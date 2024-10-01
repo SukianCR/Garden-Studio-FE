@@ -26,7 +26,7 @@ export default function Registration() {
 
   const submit = async (e) => {
     e.preventDefault();
-    navigate("/login");
+    navigate("/garden");
   };
 
   return (
