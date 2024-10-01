@@ -7,6 +7,7 @@ import gardenReducer from "../components_db/gardenSlice";
 import currentView from "../components_db/currentViewSlice";
 import mainArrays from "../components_db/mainArraysSlice";
 import usr from "../components_db/usrSlice";
+import plantsP from "../components_db/plantsPSlice";
 
 import { api } from "./api";
 
@@ -21,6 +22,7 @@ const store = configureStore({
     currentView,
     mainArrays,
     usr,
+    plantsP,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),

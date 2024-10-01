@@ -1,21 +1,16 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-function Item({ id, pic, name, iG }) {
-  if (iG == true) {
-    console.log("true");
-  }
-  return <div className="pink h-plant-card">{pic + name}</div>;
-}
-
 export default function Home() {
   const cv = useSelector((state) => state.currentView);
   const ma = useSelector((state) => state.mainArrays);
   const usr = useSelector((state) => state.usr);
 
+
   console.log("cv" + cv);
   console.log("ma" + ma);
   console.log("usr" + usr);
+  
 
   return (
     <>
@@ -31,7 +26,9 @@ export default function Home() {
                     {" "}
                     <img src={picSrc} />
                   </div>
-                  <p className=" display-on-hover glow ">{plant.plant_name}</p>
+                  <p className=" display-on-hover glow p-0">
+                    {plant.plant_name}
+                  </p>
                 </div>
               </div>
             );
@@ -41,9 +38,3 @@ export default function Home() {
     </>
   );
 }
-
-// useEffect(() => {
-//   if (garden?.garden?.[0]) {
-//     setForm(garden.garden[0]);
-//   }
-// }, [garden]);

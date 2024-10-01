@@ -1,106 +1,16 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useRegistrationMutation } from "../components_db/registrationSlice";
-import { useLoginMutation } from "../components_db/userSlice";
-
-import Loading_Bar from "./Loading_Bar";
-import LoadReference from "./reference";
 import SelectList from "./SelectList";
-import { useCreateGardenMutation } from "../components_db/gardenSlice";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Registration() {
-  // load the reference data
-  // console.log("run reference from Registration");
-  LoadReference() ? LoadReference() : console.log("");
-  // LoadReference() ? LoadReference() : console.log("Still loading Reference");
-  //  test this call
-
   const navigate = useNavigate();
   const [form, setForm] = useState({});
   const [errM, setErrM] = useState(null);
 
-  const [registerUser] = useRegistrationMutation();
-  const [createGarden] = useCreateGardenMutation();
-  const [loginUser] = useLoginMutation();
-
   const zoneList = useSelector((state) => {
-    return state.reference.zoneList;
+    return state.plantsP.zones;
   });
-  const shapeList = useSelector((state) => {
-    return state.reference.shapeList;
-  });
-  const waterRequirementList = useSelector((state) => {
-    return state.reference.waterRequirementList;
-  });
-  const sunRequirementList = useSelector((state) => {
-    return state.reference.sunRequirementList;
-  });
-  const soilRequirementList = useSelector((state) => {
-    return state.reference.soilRequirementList;
-  });
-
-  const createDefaultGarden = ({ id, zone_id }) => {
-    return {
-      description: "default garden",
-      user_id: id,
-      zone_id: zone_id,
-      shape_id: shapeList[0].id,
-      water_requirement_id: waterRequirementList[0].id,
-      sun_requirement_id: sunRequirementList[0].id,
-      soil_requirement_id: soilRequirementList[0].id,
-    };
-  };
-
-  const submit = async (e) => {
-    e.preventDefault();
-    // console.log("submit");
-
-    try {
-      let success;
-      let loginSuccess;
-      let gardenSuccess;
-
-      // TO DO - correctly handle user_role_id
-      form.user_role_id = "8b8329b7-943a-4f12-9803-dcba09ec1ede";
-
-      success = await registerUser(form).unwrap();
-      //  console.log("registration success REGISTERUSER: ", success);
-      if (success?.token) {
-        loginSuccess = await loginUser(form).unwrap();
-        //      console.log("registration loginSuccess LOGINUSER:", loginSuccess);
-
-        // TODO Handle failed registration better
-        // TODO Handle failed login better
-        // TODO Handle failed create garden better
-        // test if we got the token back from registration
-
-        // NOTE- May figured out the timing problem here - Set the token because we have a timing issue
-        //window.sessionStorage.setItem("Token", loginSuccess.token);
-        const specifications = createDefaultGarden(loginSuccess.user);
-
-        gardenSuccess = await createGarden({ specifications }).unwrap();
-
-        //   console.log("registration gardenSuccess CREATEGARDEN:", gardenSuccess);
-
-        if (loginSuccess?.token) {
-          navigate("/garden");
-        } else {
-          setErrM(
-            "There is a problem with your registration, please try again."
-          );
-        }
-      } else {
-        setErrM(
-          "There is a problem with your registration, please try again. If you already registered with this email, please login."
-        );
-      }
-    } catch (err) {
-      setErrM(
-        "There is a problem with your registration, please try again. If you already registered with this email, please login."
-      );
-    }
-  };
 
   const updateForm = (e) => {
     // console.log("updateForm");
@@ -112,6 +22,11 @@ export default function Registration() {
 
   const updateFormOnListChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const submit = async (e) => {
+    e.preventDefault();
+    navigate("/login");
   };
 
   return (
@@ -183,14 +98,19 @@ export default function Registration() {
             </div>
 
             <div className="col-5 center reg ">
-              <SelectList
-                theList={zoneList}
-                theListName="zone_id"
-                theParentForm="Registration"
-                onChangeFunction={updateFormOnListChange}
-                theFieldName="zone_name"
-                the2FieldName="temp_range"
-              />
+              <select
+                onChange={updateFormOnListChange}
+                className="form-control text-info"
+              >
+                <option value={0}>&#x1F321; Zone &deg;F </option>
+                {zoneList?.map((zone) => {
+                  return (
+                    <option key={zone.id} value={zone.id}>
+                      &#x1F321; {zone.name} &deg;F{" "}
+                    </option>
+                  );
+                })}
+              </select>
             </div>
           </div>
 
@@ -202,6 +122,7 @@ export default function Registration() {
             </div>
           </div>
         </form>
+
         {errM && (
           <div className="row pt-5 ">
             <div className="col-12 center">
@@ -213,3 +134,51 @@ export default function Registration() {
     </div>
   );
 }
+
+// const watersList = useSelector((state) => {
+//   return state.plantsP.waters;
+// });
+// const sunsList = useSelector((state) => {
+//   return state.plantsP.suns;
+// });
+// const soilsList = useSelector((state) => {
+//   return state.plantsP.soils;
+// });
+
+// // console.log("submit");
+
+// try {
+//   let success;
+//   let loginSuccess;
+//   let gardenSuccess;
+
+//   form.user_role_id = "8b8329b7-943a-4f12-9803-dcba09ec1ede";
+
+//   success = await registerUser(form).unwrap();
+
+//   if (success?.token) {
+//     loginSuccess = await loginUser(form).unwrap();
+
+//     const specifications = createDefaultGarden(loginSuccess.user);
+
+//     gardenSuccess = await createGarden({ specifications }).unwrap();
+
+//     //   console.log("registration gardenSuccess CREATEGARDEN:", gardenSuccess);
+
+//     if (loginSuccess?.token) {
+//       navigate("/garden");
+//     } else {
+//       setErrM(
+//         "There is a problem with your registration, please try again."
+//       );
+//     }
+//   } else {
+//     setErrM(
+//       "There is a problem with your registration, please try again. If you already registered with this email, please login."
+//     );
+//   }
+// } catch (err) {
+//   setErrM(
+//     "There is a problem with your registration, please try again. If you already registered with this email, please login."
+//   );
+// }
