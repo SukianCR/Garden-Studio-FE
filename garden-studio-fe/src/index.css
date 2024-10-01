@@ -1,0 +1,230 @@
+/* .plant {
+  padding: 2em;
+  margin: 1em;
+} */
+
+.frame {
+  padding: 0em 2em !important;
+}
+.aife {
+  align-items: flex-end !important;
+}
+.plant_box {
+  display: flex;
+
+  justify-content: space-between;
+  border-radius: 0.5em;
+}
+.vertical {
+  display: flex;
+  flex-direction: column;
+}
+.drop_position {
+  padding: 3em;
+  margin: 1em;
+  display: flex;
+  justify-content: center;
+  border: rgba(255, 255, 255, 0.4) 1px dashed;
+}
+
+.white-soft {
+  color: rgba(255, 255, 255, 0.712);
+}
+
+.card:hover,
+.navbar:hover,
+.plant_box:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.center {
+  display: flex;
+  justify-content: center !important;
+}
+
+.mainContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  justify-content: space-between;
+  /* height: 600px;
+  overflow: auto; */
+  width: 100%;
+}
+
+.shape {
+  background-color: #50372c !important;
+  background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+
+  border-radius: 0.5em;
+
+  /* height: 750px; */
+}
+
+.pink {
+  background-color: pink !important;
+}
+.blue {
+  background-color: lightblue !important;
+}
+
+.yellow {
+  background-color: rgba(255, 255, 0, 0.548);
+}
+
+.dragInGarden > p {
+  font-size: 0.8em;
+}
+.dragInGarden > * {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.left_column {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0px !important;
+}
+.right_column {
+  padding-right: 0px !important;
+}
+
+/* img {
+  width: 125px;
+  height: 75px;
+} */
+img {
+  width: 100px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  color: #62c462;
+  font-size: 1.8em;
+  padding-left: 2em;
+  padding-right: 0.3em;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+.cgray {
+  color: rgba(160, 160, 160, 0.7) !important;
+}
+
+input,
+select {
+  text-align: center;
+}
+
+.nav-link {
+  padding: 1em 1.3em !important;
+}
+.btn-link {
+  text-decoration: none !important;
+  padding-top: 1em !important;
+}
+
+.fdc {
+  flex-direction: column;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.left-column > div {
+  padding: 3em !important;
+}
+
+.tik {
+  display: flex;
+}
+
+/* //space right */
+.sl {
+  padding-left: 0.5em !important;
+}
+
+.pc_info {
+  padding-left: 1.5em;
+}
+
+.plant_small {
+  width: 100%;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 70%;
+  justify-content: center;
+}
+
+.h-plant-card {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  text-align: center;
+  width: 100% !important;
+}
+
+.hoverable-button:hover + .display-on-hover {
+  display: block;
+  transition: 0.5s;
+}
+.display-on-hover {
+  display: none;
+}
+
+.glow {
+  font-size: 1.3em;
+  color: #fff;
+  text-align: center;
+  animation: glow 2s ease-in-out infinite alternate;
+  transition: 0.5s;
+  padding: 1em;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073,
+      0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6,
+      0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+
+.shadow {
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  transition: 0.75s;
+}
+
+.shadow:hover {
+  border-bottom: #ff4da67c dotted 0.3em;
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* @media only screen and (min-width: 600px) {
+  .frameInt {
+    display: flex;
+    flex-direction: column;
+  }
+  .center_column {
+    margin: 2em 0em !important;
+  }
+
+  .left_column {
+    padding-right: 0em;
+  }
+
+  
+} */
