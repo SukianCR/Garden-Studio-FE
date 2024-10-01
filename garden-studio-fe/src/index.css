@@ -97,7 +97,12 @@
 img {
   width: 100px;
 }
-
+.pr-1 {
+  padding-right: 1em;
+}
+.pl-050 {
+  padding-left: 0.5em;
+}
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
   color: #62c462;
@@ -110,7 +115,7 @@ img {
   width: 100% !important;
 }
 .cgray {
-  color: rgba(160, 160, 160, 0.7) !important;
+  color: rgba(160, 160, 160, 1) !important;
 }
 
 input,

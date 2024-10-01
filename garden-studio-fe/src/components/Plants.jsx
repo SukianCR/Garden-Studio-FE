@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import Loading_Bar from "./Loading_Bar.jsx";
-import loadReference from "./reference.js";
 import {
   setSun,
   setSoil,
@@ -124,17 +122,7 @@ export default function Plants() {
       pic: "1",
     },
   ];
-  let isLoading = true;
-  loadReference();
-  // const sta = useSelector((state) => state.reference);
-  const allRef = useSelector((state) => state.reference);
-  const cv = useSelector((state) => state.currentView);
-  const allPlants = useSelector((state) => state.reference.plantList);
-  const allZones = allRef.zoneList;
-  const allSuns = allRef.sunRequirementList;
-  const allH2O = allRef.waterRequirementList;
-  const allSoil = allRef.soilRequirementList;
-  const lifeCycleList = allRef.lifeCycleList;
+
 
   const allPlantsBurnt = allRef.plantList;
 
@@ -142,16 +130,13 @@ export default function Plants() {
 
   // const fullSelects = [];
 
-  isLoading = false;
+ 
 
   console.log("all ref: ", allRef);
 
   const dispatch = useDispatch();
 
-  if (isLoading) {
-    return Loading_Bar();
-  }
-
+ 
   if (allPlants?.length == 0) {
     return <div>No plants found.</div>;
   }

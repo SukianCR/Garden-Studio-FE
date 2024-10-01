@@ -15,18 +15,13 @@ import {
   setReferencePlants,
 } from "../components_db/mainArraysSlice.js";
 
-import { useGetReferenceQuery } from "../components_db/referenceSlice";
 
 export default function Garden_model() {
-  const { data, isSuccess, isLoading, isError, error } = useGetReferenceQuery();
-  if (isSuccess) {
-    console.log("suxed en reference loading garden model: ", data);
-  } else {
-    console.log("error en reference loading garden model:", error);
-  }
+ 
+ 
 
   const shap = useSelector((state) => state.currentView.shape);
-  const allRef = useSelector((state) => state.reference);
+  
   const ma = useSelector((state) => state.mainArrays);
   const allPlants = ma.allPlants;
   const allContainers = ma.allContainers;
@@ -41,7 +36,7 @@ export default function Garden_model() {
   }, []);
 
   function getAllPlants() {
-    const allPlantsExtended = data?.plantList?.map((plant) => ({
+    const allPlantsExtended = referencePlants?.plantList?.map((plant) => ({
       ...plant,
       in_garden: false,
       pic: Math.floor(Math.random() * 10),

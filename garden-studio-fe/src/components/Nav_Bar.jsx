@@ -1,15 +1,44 @@
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-export default function Nav_Bar() {
-  const token = window.sessionStorage.getItem("Token");
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setEmail,
+  setPassword,
+  setFname,
+  setLname,
+  setPhone,
+  setZone,
+  setToken,
+} from "../components_db/usrSlice";
 
+export default function Nav_Bar() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function Logout() {
-    window.sessionStorage.removeItem("Token");
+    resetUser();
+  }
+  function resetUser() {
+    dispatch(setEmail("0"));
+    dispatch(setPassword("0"));
+    dispatch(setFname("0"));
+    dispatch(setLname("0"));
+    dispatch(setPhone("0"));
+    dispatch(setZone("0"));
+    dispatch(setToken(false));
+
     navigate("/login");
   }
+
+  const usr = useSelector((state) => {
+    return state.usr;
+  });
+
+  const token = usr.token;
+  const fname = usr.fname;
+
+  console.log("tiene token?" + token);
 
   return (
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
@@ -58,11 +87,12 @@ export default function Nav_Bar() {
                   My Garden
                 </NavLink>
               </li>
-              <li className="nav-item ">
-                <NavLink to="/user" className="nav-link ">
-                  User Info
+              <li className="nav-item">
+                <NavLink to="/user" className="nav-link text-success ">
+                {fname}
                 </NavLink>
               </li>
+
               <li className="nav-item">
                 <button
                   type="button"
