@@ -46,7 +46,7 @@ export default function Right_Column() {
   const updateCurrentView = (e) => {
     const selectedIndex = e.target.options.selectedIndex;
     const newValue = e.target.options[selectedIndex].getAttribute("key2");
-    //console.log("NEW VALUE" + newValue);
+    
 
     switch (e.target.name) {
       case "s_soil":
@@ -83,6 +83,8 @@ export default function Right_Column() {
     if (cv.sun != "0") {
       filters.push("sun");
     }
+
+
     const newCV = [];
     switch (filters.length) {
       case 0: // 0 filters
@@ -250,7 +252,7 @@ export default function Right_Column() {
     console.log("cv plants" + cvPlants?.length);
 
     return (
-      <div>
+      <ul className="list-group">
         <Droppable id={50} key={50}>
           {cvPlants?.map((plant) => {
             // const img = "../src/assets/pictures/" + random_number + ".png";
@@ -259,26 +261,28 @@ export default function Right_Column() {
             if (plant.in_garden == false) {
               return (
                 <Draggable id={plant.id} key={plant.id} old_cont={50}>
-                  <div className=" plant_box  p-1 mb-2 bg-primary border border-success">
-                    <div className="center">
-                      {" "}
-                      <img src={path} />
-                    </div>
-
-                    <div className="row pc_info ">
-                      <div className="col-12 center  aife   ">
-                        <h6>{plant.plant_name}</h6>
+                  <li className="list-group-item list-group-item-dark d-flex  border border-dark-subtle plant_box mb-2 rounded">
+                    <div className="center w80">
+                      <div className="center">
+                        {" "}
+                        <img src={path} />
                       </div>
 
-                      <div className="col-12">${plant.price} each</div>
+                      <div className="row pc_info ">
+                        <div className="col-12 center  aife   ">
+                          <h6 className="text-danger">{plant.plant_name}</h6>
+                        </div>
+
+                        <div className="col-12">${plant.price} each</div>
+                      </div>
                     </div>
-                  </div>
+                  </li>
                 </Draggable>
               );
             }
           })}
         </Droppable>
-      </div>
+      </ul>
     );
   }
 

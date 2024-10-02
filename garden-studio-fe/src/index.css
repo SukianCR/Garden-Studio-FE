@@ -12,8 +12,10 @@
 .plant_box {
   display: flex;
 
-  justify-content: space-between;
-  border-radius: 0.5em;
+  justify-content: space-around;
+  border-radius: 2em;
+  width: 100%;
+  background-color: pink;
 }
 .vertical {
   display: flex;
@@ -34,7 +36,7 @@
 .card:hover,
 .navbar:hover,
 .plant_box:hover {
-  background-color: rgba(0, 0, 0, 0.1) !important;
+  background-color: rgba(0, 0, 0, 0.3) !important;
 }
 
 .center {
@@ -155,13 +157,16 @@ select {
 }
 
 .pc_info {
-  padding-left: 1.5em;
+  padding-left: 2em;
 }
 
 .plant_small {
   width: 100%;
 }
 
+.w80 {
+  width: 80%;
+}
 .home-container {
   display: flex;
   flex-direction: row;
