@@ -13,7 +13,7 @@ export default function Left_Column() {
   const zones = useSelector((state) => {
     return state.plantsP.zones;
   });
-  console.log(usr?.password + usr?.phone + usr?.zone + usr?.token);
+  // console.log(usr?.password + usr?.phone + usr?.zone + usr?.token);
 
   const GetZoneName = () => {
     const filteredZone = zones.filter((zn) => zn.id == usr.zone);

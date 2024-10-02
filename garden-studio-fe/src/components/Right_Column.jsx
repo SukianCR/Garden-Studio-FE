@@ -15,31 +15,23 @@ import {
 } from "../components_db/currentViewSlice.js";
 
 export default function Right_Column() {
-  // const plantsOriginal = useSelector((state) => {
-  //   return state.mainArrays.allPlants;
-  // });
-  // const containersOriginal = useSelector((state) => {
-  //   return state.mainArrays.allContainers;
-  // });
-  // // const zones = useSelector((state) => {
-  //   return state.plantsP.zones;
-  // });
   const cv = useSelector((state) => state.currentView);
-  const cvPlants = cv.cvPlants;
-
   const pplants = useSelector((state) => state.plantsP);
-  const soils = pplants.soils;
-  const suns = pplants.suns;
-  const waters = pplants.waters;
-  const zones = pplants.zones;
-
   const ma = useSelector((state) => state.mainArrays);
-  const allPlants = ma.allPlants;
-  const allContainers = ma.allContainers;
-  const plantsInGarden = ma.plantsInGarden;
-  const referencePlants = ma.referencePlants;
+  console.log("ma all plants" + ma.allPlants);
 
-  // console.log("PIG" + ma?.PlantsInGarden?.length);
+  const cvPlants = cv?.cvPlants;
+
+  const soils = pplants?.soils;
+  const suns = pplants?.suns;
+  const waters = pplants?.waters;
+  const zones = pplants?.zones;
+
+  const allPlants = ma?.allPlants;
+  const allContainers = ma?.allContainers;
+  const plantsInGarden = ma?.plantsInGarden;
+  const referencePlants = ma?.referencePlants;
+
   console.log("ALL Plants" + allPlants?.length);
   console.log("ALL Containers" + allContainers?.length);
   console.log("ALL plantsInGarden" + plantsInGarden?.length);
@@ -259,32 +251,33 @@ export default function Right_Column() {
 
     return (
       <div>
-       hola
-        {/* {cvPlants?.map((plant) => {
-          // const img = "../src/assets/pictures/" + random_number + ".png";
-          const path = `./src/assets/pictures/${plant.pic}.png`;
+        <Droppable id={50} key={50}>
+          {cvPlants?.map((plant) => {
+            // const img = "../src/assets/pictures/" + random_number + ".png";
+            const path = `./src/assets/pictures/${plant.pic}.png`;
 
-          if (plant.in_garden == false) {
-            return (
-              <>
-                <div className=" plant_box  p-1 mb-2 bg-primary border border-success">
-                  <div className="center">
-                    {" "}
-                    <img src={path} />
-                  </div>
-
-                  <div className="row pc_info ">
-                    <div className="col-12 center  aife   ">
-                      <h6>{plant.plant_name}</h6>
+            if (plant.in_garden == false) {
+              return (
+                <Draggable id={plant.id} key={plant.id} old_cont={50}>
+                  <div className=" plant_box  p-1 mb-2 bg-primary border border-success">
+                    <div className="center">
+                      {" "}
+                      <img src={path} />
                     </div>
 
-                    <div className="col-12">${plant.price} each</div>
+                    <div className="row pc_info ">
+                      <div className="col-12 center  aife   ">
+                        <h6>{plant.plant_name}</h6>
+                      </div>
+
+                      <div className="col-12">${plant.price} each</div>
+                    </div>
                   </div>
-                </div>
-              </>
-            );
-          }
-        })} */}
+                </Draggable>
+              );
+            }
+          })}
+        </Droppable>
       </div>
     );
   }

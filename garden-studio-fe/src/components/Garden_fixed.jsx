@@ -24,7 +24,7 @@ export default function Garden_fixed() {
     in_garden: false,
     pic: Math.floor(Math.random() * 10),
   }));
-  const [allPlants, setAllPlants] = useState(allPlantsExtended2);
+  // const [allPlants, setAllPlants] = useState(allPlantsExtended2);
 
   //   setAllContainers(allContainersExtended);
   //   setAllPlants(allPlantsExtended2);
@@ -74,7 +74,7 @@ export default function Garden_fixed() {
           return plant;
         }
       });
-      setAllPlants(updatedPlants2);
+      // setAllPlants(updatedPlants2);
     } else {
       const updatedPlants = allPlantsExtended2.map((plant) => {
         if (plant.id == plant_id) {
@@ -84,7 +84,7 @@ export default function Garden_fixed() {
         }
       });
 
-      setAllPlants(updatedPlants);
+      // setAllPlants(updatedPlants);
     }
   }
 

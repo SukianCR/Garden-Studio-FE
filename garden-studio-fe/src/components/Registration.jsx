@@ -62,7 +62,6 @@ export default function Registration() {
                 name="email"
                 aria-describedby="emailHelp"
                 placeholder="Email"
-                value="sukimixcr@gmail.com"
                 onChange={updateForm}
                 required
               />
@@ -74,7 +73,6 @@ export default function Registration() {
                 className="form-control form-control-login "
                 name="password"
                 placeholder="Password"
-                value="1234"
                 onChange={updateForm}
                 required
               />
@@ -88,7 +86,6 @@ export default function Registration() {
                 className="form-control form-control-login "
                 name="fname"
                 placeholder="First Name"
-                value="Susana"
                 onChange={updateForm}
                 required
               />
@@ -100,7 +97,6 @@ export default function Registration() {
                 className="form-control form-control-login "
                 name="lname"
                 placeholder="Last Name"
-                value="Monge"
                 onChange={updateForm}
                 required
               />
@@ -114,7 +110,6 @@ export default function Registration() {
                 className="form-control "
                 name="pnumber"
                 placeholder="(XXX) 867-5209"
-                value="7029341091"
                 onChange={updateForm}
                 required
               />

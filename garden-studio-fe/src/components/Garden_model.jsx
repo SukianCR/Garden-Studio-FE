@@ -15,18 +15,14 @@ import {
   setReferencePlants,
 } from "../components_db/mainArraysSlice.js";
 
-
 export default function Garden_model() {
- 
- 
-
   const shap = useSelector((state) => state.currentView.shape);
-  
+
   const ma = useSelector((state) => state.mainArrays);
-  const allPlants = ma.allPlants;
-  const allContainers = ma.allContainers;
-  const plantsInGarden = ma.plantsInGarden;
-  const referencePlants = ma.referencePlants;
+  const allPlants = ma?.allPlants;
+  const allContainers = ma?.allContainers;
+  const plantsInGarden = ma?.plantsInGarden;
+  const referencePlants = ma?.referencePlants;
 
   const dispatch = useDispatch();
 
@@ -43,8 +39,8 @@ export default function Garden_model() {
       price: Math.floor(Math.random() * 30) + 10,
     }));
 
-    dispatch(setAllPlants(allPlantsExtended));
-    dispatch(setReferencePlants(allPlantsExtended));
+    // dispatch(setAllPlants(allPlantsExtended));
+    // dispatch(setReferencePlants(allPlantsExtended));
   }
 
   function getAllContainers() {
@@ -408,7 +404,7 @@ export default function Garden_model() {
       );
 
       allPlants_temp.splice(plantIndex, 1);
-      dispatch(setAllPlants(allPlants_temp));
+      // dispatch(setAllPlants(allPlants_temp));
 
       // b.(add plant to plantsInGarden)
       //setPlantsInGarden
@@ -426,7 +422,7 @@ export default function Garden_model() {
         console.log(allPlants_temp);
 
         console.log("all plants before new plant added" + ma.allPlants.length);
-        dispatch(setAllPlants(allPlants_temp));
+        dispatch(allPlants_temp);
 
         console.log("all plants after new plant added" + ma.allPlants.length);
 
