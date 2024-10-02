@@ -31,11 +31,11 @@ export default function MyGarden() {
   const [form, setForm] = useState(garden?.garden?.[0]);
   const [errM, setErrM] = useState(null);
   const [successM, setSuccessM] = useState(null);
-  useEffect(() => {
-    if (garden?.garden?.[0]) {
-      setForm(garden.garden[0]);
-    }
-  }, [garden]);
+  // useEffect(() => {
+  //   if (garden?.garden?.[0]) {
+  //     setForm(garden.garden[0]);
+  //   }
+  // }, [garden]);
 
   // console.log("function User() SETFORM currentUser: ", form);
 

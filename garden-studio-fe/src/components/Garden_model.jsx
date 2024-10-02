@@ -26,10 +26,10 @@ export default function Garden_model() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    getAllContainers();
-    getAllPlants();
-  }, []);
+  // useEffect(() => {
+  //   getAllContainers();
+  //   getAllPlants();
+  // }, []);
 
   function getAllPlants() {
     const allPlantsExtended = referencePlants?.plantList?.map((plant) => ({
@@ -419,12 +419,12 @@ export default function Garden_model() {
         const allPlants_temp = [...allPlants];
 
         allPlants_temp.push(new_plant);
-        console.log(allPlants_temp);
+        // console.log(allPlants_temp);
 
-        console.log("all plants before new plant added" + ma.allPlants.length);
+        // console.log("all plants before new plant added" + ma.allPlants.length);
         dispatch(allPlants_temp);
 
-        console.log("all plants after new plant added" + ma.allPlants.length);
+        // console.log("all plants after new plant added" + ma.allPlants.length);
 
         // b. update containersArray (set old container to vacancy: true and plant_id: null)
         const allContainers_temp = [...allContainers];
@@ -432,7 +432,7 @@ export default function Garden_model() {
           (container) => container.id == old_cont_id
         );
         allContainers_temp[containerIndexO] = old_cont_obj;
-        console.log(allContainers_temp);
+        // console.log(allContainers_temp);
         dispatch(setAllContainers(allContainers_temp));
 
         // remove from plantsInGarden
@@ -441,7 +441,7 @@ export default function Garden_model() {
           (plant) => plant.id == plant_id
         );
         const plantRemoved = plantsInGarden_temp.splice(plantIndex, 1);
-        console.log(plantsInGarden_temp);
+        // console.log(plantsInGarden_temp);
         dispatch(setPlantsInGarden(plantsInGarden_temp));
       } else {
         // update containers array , a. add plant in new container,
@@ -466,7 +466,7 @@ export default function Garden_model() {
         );
         allContainers_temp[containerIndexO] = old_cont_obj;
         dispatch(setAllContainers(allContainers_temp));
-        console.log("after empty last cont" + allContainers);
+        // console.log("after empty last cont" + allContainers);
       }
     }
   }

@@ -38,7 +38,7 @@ export default function Nav_Bar() {
   const token = usr.token;
   const fname = usr.fname;
 
-  console.log("tiene token?" + token);
+  // console.log("tiene token?" + token);
 
   return (
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">

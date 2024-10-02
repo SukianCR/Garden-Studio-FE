@@ -1,16 +1,12 @@
-import { useEffect, useState } from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Home() {
-  const cv = useSelector((state) => state.currentView);
-  const ma = useSelector((state) => state.mainArrays);
-  const usr = useSelector((state) => state.usr);
 
-  useEffect(() => {
-    console.log("cv" + cv);
-    console.log("ma" + ma);
-    console.log("usr" + usr);
-  }, [cv, ma, usr]);
+  const ma = useSelector((state) => state.mainArrays);
+  
+
+  
 
   return (
     <>

@@ -4,12 +4,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const currentViewSlice = createSlice({
   name: "currentView",
   initialState: {
-    water: "0",
-    sun: "0",
-    soil: "0",
-    zone: "0",
+    water: 0,
+    sun: 0,
+    soil: 0,
+    zone: 0,
     shape: "sq",
-    cvPlants: []
+    cvPlants: [],
   },
   reducers: {
     setWater: (state, { payload }) => {

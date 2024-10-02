@@ -30,25 +30,14 @@ export default function Garden() {
   //if the garden isn't there yet, do the query
   //if (!myGarden?.id) {
   // **************** getting a complaint about the conditional **************//
-  console.log("theUserID", theUser.id);
   const { data, error } = useGetMyGardenQuery(theUser.id);
-  console.log("myGarden data", data);
+  // console.log("myGarden data", data);
   //}
-  console.log("myGarden", myGarden);
-
-  // just a note for now
-  if (!theUser.id && window.sessionStorage.getItem("Token")) {
-    console.log("Need LazyUserRefresh Call");
-  }
-  //reload the user with a refresh if it is needed
-  const newRefresh = LazyUserRefresh();
-  console.log("newRefresh: ", newRefresh);
 
  
-  console.log("Garden SHAPELIST: ", shapeList);
-  console.log("Garden ZONELIST: ", zoneList);
-  console.log("Garden USER: ", theUser);
-  console.log("Garden MYGARDEN: ", myGarden);
+  //reload the user with a refresh if it is needed
+  const newRefresh = LazyUserRefresh();
+ 
 
   // // find the correct name for display based on id for zone
 
@@ -76,10 +65,7 @@ export default function Garden() {
       })
     );
 
-    console.log(
-      "Garden_Canvas userGardenCanvas (From State): ",
-      userGardenCanvas
-    );
+    
 
     const specificShapeClass = shapeList?.filter((obj) => {
       if (obj.id === userGardenCanvas) return obj;
@@ -98,8 +84,7 @@ export default function Garden() {
         : "Square";
     }
 
-    console.log("Garden_Canvas - CanvasClasses: ", canvasClasses);
-    console.log("Garden_Canvas- CanvasShape: ", canvasShape);
+   
 
     return <div className={canvasClasses}>{canvasShape}</div>;
   }
