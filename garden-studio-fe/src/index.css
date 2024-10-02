@@ -29,13 +29,18 @@
   border: rgba(255, 255, 255, 0.4) 1px dashed;
 }
 
+.space-evenly {
+  display: flex;
+  justify-content: space-evenly;
+}
 .white-soft {
   color: rgba(255, 255, 255, 0.712);
 }
 
-.card:hover,
+.card-body:hover,
 .navbar:hover,
-.plant_box:hover {
+.plant_box:hover,
+.pig > li:hover {
   background-color: rgba(0, 0, 0, 0.3) !important;
 }
 
@@ -60,7 +65,8 @@
   background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
 
   border-radius: 0.5em;
-
+  width: 100%;
+  height: 100%;
   /* height: 750px; */
 }
 
@@ -200,6 +206,12 @@ select {
   padding: 1em;
 }
 
+.center_column {
+  width: 300px;
+  height: 900px;
+}
+
+
 @-webkit-keyframes glow {
   from {
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073,
@@ -224,7 +236,12 @@ select {
   transition: 0.5s;
 }
 
-.card , .plant_box{
+.card,
+.plant_box,
+.pig,
+input,
+select,
+button {
   /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4); */
   box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.05);
 }
@@ -235,9 +252,7 @@ select {
     display: flex;
     flex-direction: column;
   }
-  .center_column {
-    margin: 2em 0em !important;
-  }
+  
 
   .left_column {
     padding-right: 0em;
