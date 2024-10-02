@@ -36,6 +36,7 @@ export default function Registration() {
 
   const submit = async (e) => {
     e.preventDefault();
+
     dispatch(setEmail(form.email));
     dispatch(setPassword(form.password));
     dispatch(setFname(form.fname));
@@ -43,6 +44,7 @@ export default function Registration() {
     dispatch(setPhone(form.pnumber));
     dispatch(setZone(form.zone));
     dispatch(setToken(true));
+
 
     navigate("/garden");
   };
