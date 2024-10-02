@@ -19,7 +19,6 @@ export default function Right_Column() {
   const cv = useSelector((state) => state.currentView);
   const pplants = useSelector((state) => state.plantsP);
   const ma = useSelector((state) => state.mainArrays);
- 
 
   const cvPlants = cv?.cvPlants;
 
@@ -32,8 +31,6 @@ export default function Right_Column() {
   const allContainers = ma?.allContainers;
   const plantsInGarden = ma?.plantsInGarden;
   const referencePlants = ma?.referencePlants;
-
-  
 
   const dispatch = useDispatch();
 
@@ -280,18 +277,21 @@ export default function Right_Column() {
     <>
       {/* row card bg-light card plant_box  mt-2 */}
 
-      <div className="card  mb-3 ">
-        <div className="card-header center">Plants</div>
+      {/* <div className="card  mb-3 border border-black">
+        <div className="card-header center bg-primary">Plants</div> */}
+      <div className="card  mb-4 border border-dark-subtle">
+        <p className="card-header center bg-primarygit ">Plants</p>
 
         {/* <Filters /> */}
-        <div className="card-body center fdc pb-4">
+        {/* <div className="card-body center fdc pb-4 bg-dark "> */}
+        <div className="card-body center fdc pb-4 bg-dark ">
           <div className="row pt-2 center ">
             <div className="col-6 center ">
               <select
                 defaultValue="0"
                 onChange={updateCurrentView}
                 name="s_zone"
-                className="form-control  cgray w-100 p-2 bg-dark "
+                className="form-control  cgray w-100 p-2 bg-dark border border-danger-subtle "
               >
                 <option key="0" className="dropdown-item" value="0" key2="0">
                   &#x1F321; All Zones
@@ -316,7 +316,7 @@ export default function Right_Column() {
                 defaultValue="0"
                 onChange={updateCurrentView}
                 name="s_water"
-                className="form-control cgray w-100 p-2 bg-dark"
+                className="form-control cgray w-100 p-2 bg-dark border border-info-subtle "
               >
                 <option key="0" className="dropdown-item" key2="0">
                   &#x1F4A7; Water
@@ -339,7 +339,7 @@ export default function Right_Column() {
                 defaultValue="0"
                 onChange={updateCurrentView}
                 name="s_sun"
-                className="form-control cgray w-100 p-2 bg-dark"
+                className="form-control cgray w-100 p-2 bg-dark border border-warning-subtle "
               >
                 <option key="0" className="dropdown-item" key2="0">
                   &#9728; Sun{" "}
@@ -363,7 +363,7 @@ export default function Right_Column() {
                 defaultValue="0"
                 onChange={updateCurrentView}
                 name="s_soil"
-                className="form-control cgray w-100 p-2 bg-dark"
+                className="form-control cgray w-100 p-2 bg-dark border border-success-subtle "
               >
                 <option key="0" key2="0" className="dropdown-item  ">
                   &#9968; Soil{" "}

@@ -223,6 +223,12 @@ select {
   border-bottom: #ff4da67c dotted 0.4em;
   transition: 0.5s;
 }
+
+.card , .plant_box{
+  /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4); */
+  box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.05);
+}
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 /* @media only screen and (min-width: 600px) {
   .frameInt {
