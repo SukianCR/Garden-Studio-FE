@@ -1,42 +1,32 @@
 import { useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../components_db/userSlice";
-import Loading_Bar from "./Loading_Bar";
-
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import LoadReference from "./reference";
 
 export default function Login() {
-  LoadReference() ? LoadReference() : console.log("loading reference in Login");
   const navigate = useNavigate();
   const [form, setForm] = useState({});
   const [errM, setErrM] = useState(null);
-  const [loginUser] = useLoginMutation();
+  const usr = useSelector((state) => {
+    return state.usr;
+  });
+
+  console.log(
+    usr.email +
+      usr.password +
+      usr.fname +
+      usr.lname +
+      usr.phone +
+      usr.zone +
+      usr.token
+  );
 
   const submit = async (e) => {
     e.preventDefault();
-    try {
-      let success = false;
-      success = await loginUser(form).unwrap();
 
-      console.log("Login() SUCCESS: ", success);
-
-      if (!success?.token) {
-        return Loading_Bar("50");
-      }
-
-      if (success?.token) {
-        window.sessionStorage.setItem("Token", success.token);
-
-        navigate("/garden");
-      } else {
-        setErrM(
-          "Invalid Username or Password, Please check your input and try again."
-        );
-      }
-    } catch (err) {
-      setErrM(
-        "Invalid Username or Password, Please check your input and try again."
-      );
+    if (form.email == usr.email && form.password == usr.password) {
+      navigate("/garden");
+    } else {
+      setErrM("Wrong email & password combination.");
     }
   };
 

@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import Loading_Bar from "./Loading_Bar.jsx";
-import loadReference from "./reference.js";
 import {
   setSun,
   setSoil,
@@ -17,19 +15,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 export default function Plants_fixed() {
   let isLoading = true;
-  loadReference();
 
-  const allRef = useSelector((state) => state.reference);
   const cv = useSelector((state) => state.currentView);
-  // const allPlants = useSelector((state) => state.reference.plantList);
-  const allZones = allRef.zoneList;
-  const allSuns = allRef.sunRequirementList;
-  const allH2O = allRef.waterRequirementList;
-  const allSoil = allRef.soilRequirementList;
-  const lifeCycleList = allRef.lifeCycleList;
 
-  // map allPlants and add a field to each obj
-  const allPlantsBurnt = allRef.plantList;
+  const ma = useSelector((state) => state.mainArrays);
+
+  const allPlantsBurnt = ma?.referencePlants;
 
   const allPlantsExtended = allPlantsBurnt?.map((plant) => ({
     ...plant,

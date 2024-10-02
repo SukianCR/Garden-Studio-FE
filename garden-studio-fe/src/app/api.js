@@ -18,5 +18,4 @@ export const api = createApi({
   endpoints: () => ({}),
 });
 
-// http://localhost:3000/api/botanica/gardenscape/reference/
 // "https://capstone-botanicagardenscape-server.onrender.com/api/botanica/gardenscape/",

@@ -1,21 +1,17 @@
-import Plants from "./Plants";
+
 import { useState } from "react";
 import { useSelector, useStore } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // import Loading_Bar from "./Loading_Bar";
 
-import LoadReference from "./reference.js";
-import LazyUserRefresh from "./lazyRefresh.js";
 
-import { useGetMyGardenQuery } from "../components_db/gardenSlice";
-import MyGarden from "./MyGarden";
+
 
 import GardenPlants from "./GardenPlants";
 
 export default function Garden() {
-  // load the reference data
-  console.log("run reference from garden");
-  LoadReference() ? LoadReference() : console.log("Still loading Reference");
+
+ 
 
   // Set up for navigation and the store
   const navigate = useNavigate();
@@ -48,16 +44,7 @@ export default function Garden() {
   const newRefresh = LazyUserRefresh();
   console.log("newRefresh: ", newRefresh);
 
-  // get the zonelist to display users zone
-  const zoneList = useSelector((state) => {
-    return state.reference.zoneList;
-  });
-
-  // get the shapeList to display users Shape
-  const shapeList = useSelector((state) => {
-    return state.reference.shapeList;
-  });
-
+ 
   console.log("Garden SHAPELIST: ", shapeList);
   console.log("Garden ZONELIST: ", zoneList);
   console.log("Garden USER: ", theUser);

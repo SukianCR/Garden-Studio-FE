@@ -23,22 +23,7 @@ export default function MyGarden() {
   //   const gardenId = useSelector((state) => {
   //     return state?.garden?.garden[0]?.id;
   //   });
-  // Get the reference list for Zone
-  const zoneList = useSelector((state) => {
-    return state.reference.zoneList;
-  });
-  const shapeList = useSelector((state) => {
-    return state.reference.shapeList;
-  });
-  const waterRequirementList = useSelector((state) => {
-    return state.reference.waterRequirementList;
-  });
-  const sunRequirementList = useSelector((state) => {
-    return state.reference.sunRequirementList;
-  });
-  const soilRequirementList = useSelector((state) => {
-    return state.reference.soilRequirementList;
-  });
+
 
   // set up the relationship to the garden mutation
   const [updateGarden] = useUpdateGardenMutation();

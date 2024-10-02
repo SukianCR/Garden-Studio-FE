@@ -1,12 +1,22 @@
 import { useNavigate } from "react-router-dom";
-import SelectList from "./SelectList";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
+import {
+  setEmail,
+  setPassword,
+  setFname,
+  setLname,
+  setPhone,
+  setZone,
+  setToken,
+} from "../components_db/usrSlice.js";
 
 export default function Registration() {
   const navigate = useNavigate();
   const [form, setForm] = useState({});
   const [errM, setErrM] = useState(null);
+  const dispatch = useDispatch();
 
   const zoneList = useSelector((state) => {
     return state.plantsP.zones;
@@ -26,6 +36,16 @@ export default function Registration() {
 
   const submit = async (e) => {
     e.preventDefault();
+
+    dispatch(setEmail(form.email));
+    dispatch(setPassword(form.password));
+    dispatch(setFname(form.fname));
+    dispatch(setLname(form.lname));
+    dispatch(setPhone(form.pnumber));
+    dispatch(setZone(form.zone));
+    dispatch(setToken(true));
+
+
     navigate("/garden");
   };
 
@@ -66,7 +86,7 @@ export default function Registration() {
               <input
                 type="text"
                 className="form-control form-control-login "
-                name="firstname"
+                name="fname"
                 placeholder="First Name"
                 onChange={updateForm}
                 required
@@ -77,7 +97,7 @@ export default function Registration() {
               <input
                 type="text"
                 className="form-control form-control-login "
-                name="lastname"
+                name="lname"
                 placeholder="Last Name"
                 onChange={updateForm}
                 required
@@ -90,7 +110,7 @@ export default function Registration() {
               <input
                 type="phone"
                 className="form-control "
-                name="phone_number"
+                name="pnumber"
                 placeholder="(XXX) 867-5209"
                 onChange={updateForm}
                 required
@@ -101,6 +121,7 @@ export default function Registration() {
               <select
                 onChange={updateFormOnListChange}
                 className="form-control text-info"
+                name="zone"
               >
                 <option value={0}>&#x1F321; Zone &deg;F </option>
                 {zoneList?.map((zone) => {
@@ -134,51 +155,3 @@ export default function Registration() {
     </div>
   );
 }
-
-// const watersList = useSelector((state) => {
-//   return state.plantsP.waters;
-// });
-// const sunsList = useSelector((state) => {
-//   return state.plantsP.suns;
-// });
-// const soilsList = useSelector((state) => {
-//   return state.plantsP.soils;
-// });
-
-// // console.log("submit");
-
-// try {
-//   let success;
-//   let loginSuccess;
-//   let gardenSuccess;
-
-//   form.user_role_id = "8b8329b7-943a-4f12-9803-dcba09ec1ede";
-
-//   success = await registerUser(form).unwrap();
-
-//   if (success?.token) {
-//     loginSuccess = await loginUser(form).unwrap();
-
-//     const specifications = createDefaultGarden(loginSuccess.user);
-
-//     gardenSuccess = await createGarden({ specifications }).unwrap();
-
-//     //   console.log("registration gardenSuccess CREATEGARDEN:", gardenSuccess);
-
-//     if (loginSuccess?.token) {
-//       navigate("/garden");
-//     } else {
-//       setErrM(
-//         "There is a problem with your registration, please try again."
-//       );
-//     }
-//   } else {
-//     setErrM(
-//       "There is a problem with your registration, please try again. If you already registered with this email, please login."
-//     );
-//   }
-// } catch (err) {
-//   setErrM(
-//     "There is a problem with your registration, please try again. If you already registered with this email, please login."
-//   );
-// }

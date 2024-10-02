@@ -8,10 +8,7 @@ export default function GardenPlants() {
   const user_id = useSelector((state) => {
     return state.user.user.id;
   });
-  //get plantList to display plant_name
-  const plantList = useSelector((state) => {
-    return state.reference.plantList;
-  });
+ 
   //get current user's garden id
   const userGarden = useSelector((state) => {
     return state.garden.garden;

@@ -1,8 +1,12 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useSelector} from "react-redux";
 
 export default function Protected() {
-  const sessionToken = window.sessionStorage.getItem("Token");
-  if (!sessionToken) {
+  const usr = useSelector((state) => {
+    return state.usr;
+  });
+
+  if (!usr.token) {
     return <Navigate to="/login" />;
   }
   return <Outlet />;
