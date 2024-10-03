@@ -15,10 +15,10 @@ import {
 } from "../components_db/currentViewSlice.js";
 
 export default function Right_Column() {
+  let newCV = [];
   const cv = useSelector((state) => state.currentView);
   const pplants = useSelector((state) => state.plantsP);
   const ma = useSelector((state) => state.mainArrays);
-  console.log("ma all plants" + ma.allPlants);
 
   const cvPlants = cv?.cvPlants;
 
@@ -32,152 +32,143 @@ export default function Right_Column() {
   const plantsInGarden = ma?.plantsInGarden;
   const referencePlants = ma?.referencePlants;
 
-  console.log("ALL Plants" + allPlants?.length);
-  console.log("ALL Containers" + allContainers?.length);
-  console.log("ALL plantsInGarden" + plantsInGarden?.length);
-  console.log("ALL referencePlants" + referencePlants?.length);
-
-  // console.log("cv plants" + cvPlants.length);
-
-  // console.log("ALL Reference Plants" + ma?.referencePlants?.length);
-
   const dispatch = useDispatch();
 
   const updateCurrentView = (e) => {
     const selectedIndex = e.target.options.selectedIndex;
     const newValue = e.target.options[selectedIndex].getAttribute("key2");
-    //console.log("NEW VALUE" + newValue);
+
+    const intValue = parseInt(newValue, 10);
 
     switch (e.target.name) {
       case "s_soil":
-        dispatch(setSoil(newValue));
+        dispatch(setSoil(intValue));
         break;
       case "s_sun":
-        dispatch(setSun(newValue));
+        dispatch(setSun(intValue));
         break;
       case "s_water":
-        dispatch(setWater(newValue));
+        dispatch(setWater(intValue));
         break;
       case "s_zone":
-        dispatch(setZone(newValue));
+        dispatch(setZone(intValue));
         break;
       default:
         break;
     }
+
+    // console.log("cv" + cv);
+
+    // updateCurrentList();
   };
 
-  function Manage_Filters() {
-    console.log("im in manage filters");
+  function updateCurrentList() {
+    newCV = [];
+
+    console.log(
+      "cvwater " +
+        cv.water +
+        " cvsun " +
+        cv.sun +
+        " cvsoil " +
+        cv.soil +
+        " cvzone " +
+        cv.zone
+    );
 
     const filters = [];
 
-    if (cv.zone != "0") {
+    if (cv.zone != 0) {
       filters.push("zone");
     }
-    if (cv.water != "0") {
+    if (cv.water != 0) {
       filters.push("water");
     }
-    if (cv.soil != "0") {
+    if (cv.soil != 0) {
       filters.push("soil");
     }
-    if (cv.sun != "0") {
+    if (cv.sun != 0) {
       filters.push("sun");
     }
-    const newCV = [];
+    console.log(filters);
+
     switch (filters.length) {
       case 0: // 0 filters
-        dispatch(setCvPlants(allPlants));
+        newCV = allPlants;
+        // dispatch(setCvPlants(allPlants));
         break;
 
       case 1: // 1 filter
         allPlants?.forEach((plant) => {
           if (cv.zone != 0) {
-            if (cv.zone == plant.zone_id) {
+            if (cv.zone == plant.zone) {
               newCV.push(plant);
             }
           }
           if (cv.sun != 0) {
-            if (cv.sun == plant.sun_requirement_id) {
+            if (cv.sun == plant.sun) {
               newCV.push(plant);
             }
           }
           if (cv.water != 0) {
-            if (cv.water == plant.water_requirement_id) {
+            if (cv.water == plant.water) {
               newCV.push(plant);
             }
           }
           if (cv.soil != 0) {
-            if (cv.soil == plant.soil_requirement_id) {
+            if (cv.soil == plant.soil) {
               newCV.push(plant);
             }
           }
         });
-        dispatch(setCvPlants(newCV));
+        // dispatch(setCvPlants(newCV));
         break;
 
       case 2: // 2 filters
         allPlants?.forEach((plant) => {
           if (cv.zone != 0 && cv.water != 0) {
             //zone & waterq
-            if (
-              cv.zone == plant.zone_id &&
-              cv.water == plant.water_requirement_id
-            ) {
+            if (cv.zone == plant.zone && cv.water == plant.water) {
               newCV.push(plant);
             }
           }
 
           if (cv.zone != 0 && cv.sun != 0) {
             //zone & sun
-            if (
-              cv.zone == plant.zone_id &&
-              cv.sun == plant.sun_requirement_id
-            ) {
+            if (cv.zone == plant.zone && cv.sun == plant.sun) {
               newCV.push(plant);
             }
           }
 
           if (cv.zone != 0 && cv.soil != 0) {
             //zone & soil
-            if (
-              cv.zone == plant.zone_id &&
-              cv.soil == plant.soil_requirement_id
-            ) {
+            if (cv.zone == plant.zone && cv.soil == plant.soil) {
               newCV.push(plant);
             }
           }
 
           if (cv.water != 0 && cv.sun != 0) {
             //water & sun
-            if (
-              cv.sun == plant.sun_requirement_id &&
-              cv.water == plant.water_requirement_id
-            ) {
+            if (cv.sun == plant.sun && cv.water == plant.water) {
               newCV.push(plant);
             }
           }
 
           if (cv.water != 0 && cv.soil != 0) {
             //water & soil
-            if (
-              cv.soil == plant.soil_requirement_id &&
-              cv.water == plant.water_requirement_id
-            ) {
+            if (cv.soil == plant.soil && cv.water == plant.water) {
               newCV.push(plant);
             }
           }
 
           if (cv.sun != 0 && cv.soil != 0) {
             //sun & soil
-            if (
-              cv.soil == plant.soil_requirement_id &&
-              cv.sun == plant.sun_requirement_id
-            ) {
+            if (cv.soil == plant.soil && cv.sun == plant.sun) {
               newCV.push(plant);
             }
           }
         });
-        dispatch(setCvPlants(newCV));
+        // dispatch(setCvPlants(newCV));
         break;
 
       case 3: // 3 filters
@@ -185,9 +176,9 @@ export default function Right_Column() {
           if (cv.zone == 0) {
             // selected are soil, h20, sun
             if (
-              cv.soil == plant.soil_requirement_id &&
-              cv.water == plant.water_requirement_id &&
-              cv.sun == plant.sun_requirement_id
+              cv.soil == plant.soil &&
+              cv.water == plant.water &&
+              cv.sun == plant.sun
             ) {
               newCV.push(plant);
             }
@@ -195,9 +186,9 @@ export default function Right_Column() {
           if (cv.sun == 0) {
             // selected are soil, water, zone
             if (
-              cv.soil == plant.soil_requirement_id &&
-              cv.water == plant.water_requirement_id &&
-              cv.zone == plant.zone_id
+              cv.soil == plant.soil &&
+              cv.water == plant.water &&
+              cv.zone == plant.zone
             ) {
               newCV.push(plant);
             }
@@ -205,9 +196,9 @@ export default function Right_Column() {
           if (cv.water == 0) {
             // selected are soil, sun, zone
             if (
-              cv.soil == plant.soil_requirement_id &&
-              cv.zone == plant.zone_id &&
-              cv.sun == plant.sun_requirement_id
+              cv.soil == plant.soil &&
+              cv.zone == plant.zone &&
+              cv.sun == plant.sun
             ) {
               newCV.push(plant);
             }
@@ -215,29 +206,29 @@ export default function Right_Column() {
           if (cv.soil == 0) {
             // selected are sun, water, zone
             if (
-              cv.water == plant.water_requirement_id &&
-              cv.zone == plant.zone_id &&
-              cv.sun == plant.sun_requirement_id
+              cv.water == plant.water &&
+              cv.zone == plant.zone &&
+              cv.sun == plant.sun
             ) {
               newCV.push(plant);
             }
           }
         });
-        dispatch(setCvPlants(newCV));
+        // dispatch(setCvPlants(newCV));
         break;
 
       case 4:
         allPlants?.forEach((plant) => {
           if (
-            cv.zone == plant.zone_id &&
-            cv.soil == plant.soil_requirement_id &&
-            cv.water == plant.water_requirement_id &&
-            cv.sun == plant.sun_requirement_id
+            cv.zone == plant.zone &&
+            cv.soil == plant.soil &&
+            cv.water == plant.water &&
+            cv.sun == plant.sun
           ) {
             newCV.push(plant);
           }
         });
-        dispatch(setCvPlants(newCV));
+        // dispatch(setCvPlants(newCV));
         break;
 
       default:
@@ -246,61 +237,57 @@ export default function Right_Column() {
   }
 
   function Plant_List() {
-    Manage_Filters();
-    console.log("cv plants" + cvPlants?.length);
-
+    // console.log("cv plants" + cvPlants?.length);
+    updateCurrentList();
     return (
-      <div>
-        <Droppable id={50} key={50}>
-          {cvPlants?.map((plant) => {
-            // const img = "../src/assets/pictures/" + random_number + ".png";
+      <Droppable id={50} key={50}>
+        {" "}
+        <ul className="list-group">
+          {newCV?.map((plant) => {
             const path = `./src/assets/pictures/${plant.pic}.png`;
 
-            if (plant.in_garden == false) {
+           
               return (
                 <Draggable id={plant.id} key={plant.id} old_cont={50}>
-                  <div className=" plant_box  p-1 mb-2 bg-primary border border-success">
+                  <li className="list-group-item list-group-item-dark d-flex  border border-dark-subtle plant_box mb-2 rounded w100 ">
                     <div className="center">
                       {" "}
                       <img src={path} />
                     </div>
 
-                    <div className="row pc_info ">
-                      <div className="col-12 center  aife   ">
-                        <h6>{plant.plant_name}</h6>
+                    <div className="pc_info ">
+                      <div className="center  aife   ">
+                        <h6 className="text-danger">{plant.plant_name}</h6>
                       </div>
 
-                      <div className="col-12">${plant.price} each</div>
+                      <div className="">${plant.price} each</div>
                     </div>
-                  </div>
+                  </li>
                 </Draggable>
               );
-            }
+            
           })}
-        </Droppable>
-      </div>
+        </ul>{" "}
+      </Droppable>
     );
   }
 
   return (
     <>
-      {/* row card bg-light card plant_box  mt-2 */}
+      <div className="card  mb-4 border border-dark-subtle">
+        <h5 className="card-header center bg-primary ">Plants</h5>
 
-      <div className="card  mb-3 ">
-        <div className="card-header center">Plants</div>
-
-        {/* <Filters /> */}
-        <div className="card-body center fdc pb-4">
+        <div className="card-body center fdc pb-4 bg-dark ">
           <div className="row pt-2 center ">
             <div className="col-6 center ">
               <select
                 defaultValue="0"
                 onChange={updateCurrentView}
                 name="s_zone"
-                className="form-control  cgray w-100 p-2 bg-dark "
+                className="form-control  cgray w-100 p-2 bg-dark  "
               >
                 <option key="0" className="dropdown-item" value="0" key2="0">
-                  &#x1F321; Zone
+                  &#x1F321; All Zones
                 </option>
                 {zones?.map((zone) => {
                   return (
@@ -322,7 +309,7 @@ export default function Right_Column() {
                 defaultValue="0"
                 onChange={updateCurrentView}
                 name="s_water"
-                className="form-control cgray w-100 p-2 bg-dark"
+                className="form-control cgray w-100 p-2 bg-dark "
               >
                 <option key="0" className="dropdown-item" key2="0">
                   &#x1F4A7; Water
@@ -345,7 +332,7 @@ export default function Right_Column() {
                 defaultValue="0"
                 onChange={updateCurrentView}
                 name="s_sun"
-                className="form-control cgray w-100 p-2 bg-dark"
+                className="form-control cgray w-100 p-2 bg-dark  "
               >
                 <option key="0" className="dropdown-item" key2="0">
                   &#9728; Sun{" "}
@@ -369,7 +356,7 @@ export default function Right_Column() {
                 defaultValue="0"
                 onChange={updateCurrentView}
                 name="s_soil"
-                className="form-control cgray w-100 p-2 bg-dark"
+                className="form-control cgray w-100 p-2 bg-dark "
               >
                 <option key="0" key2="0" className="dropdown-item  ">
                   &#9968; Soil{" "}
@@ -392,38 +379,4 @@ export default function Right_Column() {
       </div>
     </>
   );
-}
-
-{
-  /* 
-  function Plant_List() {
-  <div>
-<Droppable id={50} key={50}>
-  {cvPlants?.map((plant) => {
-    // const img = "../src/assets/pictures/" + random_number + ".png";
-    const path = `./src/assets/pictures/${plant.pic}.png`;
-
-    if (plant.in_garden == false) {
-      return (
-        <Draggable id={plant.id} key={plant.id} old_cont={50}>
-          <div className=" plant_box  p-1 mb-2 bg-primary border border-success">
-            <div className="center">
-              {" "}
-              <img src={path} />
-            </div>
-
-            <div className="row pc_info ">
-              <div className="col-12 center  aife   ">
-                <h6>{plant.plant_name}</h6>
-              </div>
-
-              <div className="col-12">${plant.price} each</div>
-            </div>
-          </div>
-        </Draggable>
-      );
-    }
-  })}
-</Droppable>
-</div> */
 }

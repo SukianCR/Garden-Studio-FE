@@ -10,15 +10,15 @@ const grdnSlice = createSlice({
   },
   reducers: {
     setGName: (state, { payload }) => {
-      state.zones = payload;
+      state.name = payload;
     },
 
     setGShape: (state, { payload }) => {
-      state.waters = payload;
+      state.shape = payload;
     },
 
     setGPlants: (state, { payload }) => {
-      state.suns = payload;
+      state.plants = payload;
     },
   },
 });

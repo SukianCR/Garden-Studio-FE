@@ -29,13 +29,12 @@ export default function Garden_fixed() {
   //   setAllContainers(allContainersExtended);
   //   setAllPlants(allPlantsExtended2);
 
-  console.log("ALL CONTAINERS" + allContainers);
 
   function handleDragEnd(event) {
     const plant_id = event.active.id;
     const new_cont_id = event.over?.id;
     const new_all_containers = [...allContainersExtended];
-    console.log("new all containers", new_all_containers);
+    // console.log("new all containers", new_all_containers);
     const old_cont_id = event.active.data.current.old_cont;
 
     const result = allPlantsExtended2.filter((plant) => plant.id == plant_id);

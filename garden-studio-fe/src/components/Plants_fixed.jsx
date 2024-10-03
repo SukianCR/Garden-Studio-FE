@@ -32,7 +32,7 @@ export default function Plants_fixed() {
   // setAllPlants(allPlantsExtended);
 
   const allPlants2 = useState(allPlantsExtended);
-  console.log("allPlantsExtended " + allPlantsExtended);
+  // console.log("allPlantsExtended " + allPlantsExtended);
 
   let newCV = [];
 
@@ -40,7 +40,7 @@ export default function Plants_fixed() {
 
   isLoading = false;
 
-  console.log("all ref: ", allRef);
+  // console.log("all ref: ", allRef);
 
   const dispatch = useDispatch();
 
@@ -57,7 +57,7 @@ export default function Plants_fixed() {
     // console.log("VALUE: " + e.target.value);
     const selectedIndex = e.target.options.selectedIndex;
     const newValue = e.target.options[selectedIndex].getAttribute("key2");
-    console.log("NEW VALUE" + newValue);
+    // console.log("NEW VALUE" + newValue);
 
     switch (e.target.name) {
       case "s_soil":
@@ -79,7 +79,7 @@ export default function Plants_fixed() {
 
   function Manage_Filters() {
     newCV = [];
-    console.log("NewCV in manage filters" + newCV);
+    //console.log("NewCV in manage filters" + newCV);
     const filters = [];
 
     if (cv.zone != "0") {
@@ -254,12 +254,12 @@ export default function Plants_fixed() {
 
   function Plant_List() {
     const cv = useSelector((state) => state.currentView);
-    console.log("current view" + cv);
+    //console.log("current view" + cv);
 
     Manage_Filters();
 
-    console.log("All Plants: " + allPlantsBurnt);
-    console.log("CURRENT VIEW " + newCV);
+    //console.log("All Plants: " + allPlantsBurnt);
+   // console.log("CURRENT VIEW " + newCV);
 
     return (
       <div>

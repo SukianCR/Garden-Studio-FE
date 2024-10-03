@@ -70,11 +70,11 @@ const plantsPSlice = createSlice({
         name: "1/2 sun",
       },
       {
-        id: 3,
+        id: 4,
         name: "1/3 sun",
       },
       {
-        id: 4,
+        id: 5,
         name: "No Sun",
       },
     ],

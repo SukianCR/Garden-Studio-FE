@@ -10,15 +10,6 @@ export default function Login() {
     return state.usr;
   });
 
-  console.log(
-    usr.email +
-      usr.password +
-      usr.fname +
-      usr.lname +
-      usr.phone +
-      usr.zone +
-      usr.token
-  );
 
   const submit = async (e) => {
     e.preventDefault();
