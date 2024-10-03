@@ -246,7 +246,7 @@ export default function Right_Column() {
           {newCV?.map((plant) => {
             const path = `./src/assets/pictures/${plant.pic}.png`;
 
-            if (plant.in_garden == false) {
+           
               return (
                 <Draggable id={plant.id} key={plant.id} old_cont={50}>
                   <li className="list-group-item list-group-item-dark d-flex  border border-dark-subtle plant_box mb-2 rounded w100 ">
@@ -265,7 +265,7 @@ export default function Right_Column() {
                   </li>
                 </Draggable>
               );
-            }
+            
           })}
         </ul>{" "}
       </Droppable>

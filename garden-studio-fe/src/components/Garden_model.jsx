@@ -138,7 +138,7 @@ export default function Garden_model() {
   //   dispatch(setAllContainers(allContainers_temp2));
   // }
 
-  function HandleDragEnd({ event }) {
+  function handleDragEnd(event) {
     const plant_id = event.active.id;
     const new_cont_id = event.over?.id;
     const old_cont_id = event.active.data.current.old_cont;
@@ -207,10 +207,19 @@ export default function Garden_model() {
 
       dispatch(setPlantsInGarden(plantsInGarden_temp));
     } else {
-      if (new_cont_id == 150) {
-        console.log("plant en 150 no haga nada");
+      if (new_cont_id == 50) {
+        alert("viene del garden");
+
+        // delete plant from PlantsInGarden
+        // add plant to AllPlants
+        const allPlants_temp = [...allPlants];
+        allPlants_temp.push(new_plantInGarden);
+
+        dispatch(setPlantsInGarden(allPlants_temp));
+        // delete from containers array (clear old container)
       } else {
-        // a. add plant in new container,
+        // a. add plant in new container
+        // b. remove plant from old container(set to vacancy: true and plant_id: null)
 
         // addPlantNewCont(new_cont_id , movedObj);
         const allContainers_temp2 = [...allContainers];
@@ -218,25 +227,20 @@ export default function Garden_model() {
           (container) => container.id == new_cont_id
         );
         allContainers_temp2[containerIndexN] = movedObj;
-        console.log(allContainers_temp2);
 
-        dispatch(setAllContainers(allContainers_temp2));
-
-        //   b. remove plant from old container(set to vacancy: true and plant_id: null)
-
-        const allContainers_temp3 = [...allContainers];
-        const containerIndexO = allContainers_temp3.findIndex(
+        const containerIndexO = allContainers_temp2.findIndex(
           (container) => container.id == old_cont_id
         );
-        allContainers_temp3[containerIndexO] = old_cont_obj;
-        dispatch(setAllContainers(allContainers_temp3));
+        allContainers_temp2[containerIndexO] = old_cont_obj;
+
+        dispatch(setAllContainers(allContainers_temp2));
       }
     }
   }
 
   return (
     <div className="frame">
-      <DndContext onDragEnd={HandleDragEnd}>
+      <DndContext onDragEnd={handleDragEnd}>
         <div className="row pt-4 frameInt   ">
           <div className="col-3  left_column  ">
             <Left_Column />
