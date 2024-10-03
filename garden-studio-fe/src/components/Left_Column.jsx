@@ -223,14 +223,7 @@ export default function Left_Column() {
         <UserCard />
       </div>
 
-      <div className="card  border border-dark-subtle ">
-        <h5 className="card-header center bg-primary">Droppable Area</h5>
-        <Droppable id={150} key={150}>
-          <div className=" center p-3 card-body bg-dark left-droppable-cont ">
-            Drop plants here{" "}
-          </div>
-        </Droppable>
-      </div>
+     
     </div>
   );
 }

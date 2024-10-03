@@ -96,28 +96,28 @@ export default function Garden_model() {
     switch (shap) {
       case 1:
         return (
-          <div className="text-light  shape p-3  ">
+          <div className="text-light  square p-3  ">
             <GetDroppables />
           </div>
         );
 
       case 2:
         return (
-          <div className="  text-light  shape p-3 rounded-circle  ">
+          <div className="  text-light  circle p-3 rounded-circle  ">
             <GetDroppables />
           </div>
         );
 
       case 3:
         return (
-          <div className="   text-light  shape p-3 diamond ">
+          <div className="   text-light  square p-3 diamond ">
             <GetDroppables />
           </div>
         );
 
       case 4:
         return (
-          <div className="   text-light  shape p-3 heart ">
+          <div className="   text-light  square p-3 heart ">
             <GetDroppables />
           </div>
         );
@@ -144,9 +144,14 @@ export default function Garden_model() {
     const old_cont_id = event.active.data.current.old_cont;
 
     const plant_obj = referencePlants?.filter((plant) => plant.id == plant_id);
-    const plant_price = plant_obj[0]?.price;
-    const plant_pic = plant_obj[0]?.pic;
-    const plant_name = plant_obj[0]?.plant_name;
+    const plant = plant_obj[0];
+    const plant_price = plant?.price;
+    const plant_pic = plant?.pic;
+    const plant_name = plant?.plant_name;
+    const plant_zone = plant?.zone;
+    const plant_water = plant?.water;
+    const plant_sun = plant?.sun;
+    const plant_soil = plant?.soil;
 
     const new_cont_obj = {
       id: new_cont_id,
@@ -173,6 +178,10 @@ export default function Garden_model() {
       plant_name: plant_name,
       pic: plant_pic,
       price: plant_price,
+      zone: plant_zone,
+      water: plant_water,
+      sun: plant_sun,
+      soil: plant_soil,
     };
 
     const movedObj = {
@@ -208,32 +217,48 @@ export default function Garden_model() {
       dispatch(setPlantsInGarden(plantsInGarden_temp));
     } else {
       if (new_cont_id == 50) {
-        alert("viene del garden");
-
         // delete plant from PlantsInGarden
+        const plantsInGarden_temp = [...plantsInGarden];
+        const plantIndex = plantsInGarden_temp.findIndex(
+          (plant) => plant.id == plant_id
+        );
+        const plantRemoved = plantsInGarden_temp.splice(plantIndex, 1);
+        dispatch(setPlantsInGarden(plantsInGarden_temp));
+
         // add plant to AllPlants
         const allPlants_temp = [...allPlants];
-        allPlants_temp.push(new_plantInGarden);
+        allPlants_temp.push(new_plant);
+        dispatch(setAllPlants(allPlants_temp));
 
-        dispatch(setPlantsInGarden(allPlants_temp));
         // delete from containers array (clear old container)
-      } else {
-        // a. add plant in new container
-        // b. remove plant from old container(set to vacancy: true and plant_id: null)
-
-        // addPlantNewCont(new_cont_id , movedObj);
-        const allContainers_temp2 = [...allContainers];
-        const containerIndexN = allContainers_temp2.findIndex(
-          (container) => container.id == new_cont_id
-        );
-        allContainers_temp2[containerIndexN] = movedObj;
-
-        const containerIndexO = allContainers_temp2.findIndex(
+        const allContainers_temp3 = [...allContainers];
+        const containerIndexO = allContainers_temp3.findIndex(
           (container) => container.id == old_cont_id
         );
-        allContainers_temp2[containerIndexO] = old_cont_obj;
+        allContainers_temp3[containerIndexO] = old_cont_obj;
 
-        dispatch(setAllContainers(allContainers_temp2));
+        dispatch(setAllContainers(allContainers_temp3));
+      } else {
+        if (old_cont_id === new_cont_id) {
+          console.log("el mismo do nothing");
+        } else {
+          // a. add plant in new container
+          // b. remove plant from old container(set to vacancy: true and plant_id: null)
+
+          // addPlantNewCont(new_cont_id , movedObj);
+          const allContainers_temp2 = [...allContainers];
+          const containerIndexN = allContainers_temp2.findIndex(
+            (container) => container.id == new_cont_id
+          );
+          allContainers_temp2[containerIndexN] = movedObj;
+
+          const containerIndexO = allContainers_temp2.findIndex(
+            (container) => container.id == old_cont_id
+          );
+          allContainers_temp2[containerIndexO] = old_cont_obj;
+
+          dispatch(setAllContainers(allContainers_temp2));
+        }
       }
     }
   }

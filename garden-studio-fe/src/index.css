@@ -63,13 +63,22 @@
   width: 100%;
 }
 
-.shape {
+.square {
   background-color: #50372c !important;
   background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
 
   border-radius: 0.5em;
   width: 90%;
   height: 100%;
+  /* height: 750px; */
+}
+.circle {
+  background-color: #50372c !important;
+  background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+
+  border-radius: 0.5em;
+  width: 90%;
+  height: 90%;
   /* height: 750px; */
 }
 
