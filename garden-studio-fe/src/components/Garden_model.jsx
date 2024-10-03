@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { DndContext } from "@dnd-kit/core";
 import { Droppable } from "./Droppable";
 import { Draggable } from "./Draggable";
+import { HandleDragEnd } from "./HandleDragEnd";
 
 // import Original_Containers from "./Original_Containers";
 import Left_Column from "./Left_Column";
@@ -26,26 +27,13 @@ export default function Garden_model() {
   const dispatch = useDispatch();
   const cv = useSelector((state) => state.currentView);
   const shap = cv.cvShape;
-  const navigate = useNavigate();
 
-  function getAllPlants() {
-    const allPlantsExtended = referencePlants?.plantList?.map((plant) => ({
-      ...plant,
-      in_garden: false,
-      pic: Math.floor(Math.random() * 10),
-      price: Math.floor(Math.random() * 30) + 10,
-    }));
-
-    // dispatch(setAllPlants(allPlantsExtended));
-    // dispatch(setReferencePlants(allPlantsExtended));
-  }
   function removeFPIG({ plant_id }) {
     const plantsInGarden_temp = [...plantsInGarden];
     const plantIndex = plantsInGarden_temp.findIndex(
       (plant) => plant.id == plant_id
     );
     const plantRemoved = plantsInGarden_temp.splice(plantIndex, 1);
-    // console.log(plantsInGarden_temp);
     dispatch(setPlantsInGarden(plantsInGarden_temp));
   }
 
@@ -63,14 +51,7 @@ export default function Garden_model() {
         <Draggable id={plant_id} old_cont={old_cont}>
           <div className="dragInGarden ">
             <p>{plant_name}</p>
-            <img src={path} className="mb-2" />
-            <button
-              type="button"
-              className="btn btn-danger btn-sm"
-              // onClick={removeFPIG(plant_id)}
-            >
-              x
-            </button>
+            <img src={path} />
           </div>{" "}
         </Draggable>
       </>
@@ -146,19 +127,26 @@ export default function Garden_model() {
     }
   }
 
-  function handleDragEnd(event) {
+  // function addPlantNewCont({new_cont_id, movedObj}) {
+  //   const allContainers_temp2 = [...allContainers];
+  //   const containerIndexN = allContainers_temp2.findIndex(
+  //     (container) => container.id == new_cont_id
+  //   );
+  //   allContainers_temp2[containerIndexN] = movedObj;
+  //   console.log(allContainers_temp2);
+
+  //   dispatch(setAllContainers(allContainers_temp2));
+  // }
+
+  function HandleDragEnd({ event }) {
     const plant_id = event.active.id;
     const new_cont_id = event.over?.id;
     const old_cont_id = event.active.data.current.old_cont;
 
     const plant_obj = referencePlants?.filter((plant) => plant.id == plant_id);
     const plant_price = plant_obj[0]?.price;
-
     const plant_pic = plant_obj[0]?.pic;
     const plant_name = plant_obj[0]?.plant_name;
-    const plant_mx_h = plant_obj[0]?.max_height;
-    const plant_mx_w = plant_obj[0]?.max_width;
-    const life_cycle_id = plant_obj[0]?.life_cycle_id;
 
     const new_cont_obj = {
       id: new_cont_id,
@@ -183,16 +171,20 @@ export default function Garden_model() {
     const new_plant = {
       id: plant_id,
       plant_name: plant_name,
-      max_height: plant_mx_h,
-      max_width: plant_mx_w,
       pic: plant_pic,
       price: plant_price,
-      life_cycle_id: life_cycle_id,
+    };
+
+    const movedObj = {
+      id: new_cont_id,
+      plant_id: plant_id,
+      plant_pic: plant_pic,
+      vacancy: false,
     };
 
     // container 50 is the plant list container, which is also a "droppable"
     if (old_cont_id == 50) {
-      // a.(add plant to the container in containers array ...
+      // a.(add plant to the new container in containers array ...
       const allContainers_temp = [...allContainers];
       const containerIndexN = allContainers_temp.findIndex(
         (container) => container.id == new_cont_id
@@ -200,85 +192,51 @@ export default function Garden_model() {
       allContainers_temp[containerIndexN] = new_cont_obj;
       dispatch(setAllContainers(allContainers_temp));
 
-      // ... and remove plant from plants array)
+      // b. remove from all plants
       const allPlants_temp = [...allPlants];
       const plantIndex = allPlants_temp.findIndex(
         (plant) => plant.id == plant_id
       );
+      const plantRemoved = allPlants_temp.splice(plantIndex, 1);
+      dispatch(setAllPlants(allPlants_temp));
 
-      allPlants_temp.splice(plantIndex, 1);
-      // dispatch(setAllPlants(allPlants_temp));
-
-      // b.(add plant to plantsInGarden)
+      // c.(add plant to plantsInGarden)
       //setPlantsInGarden
       const plantsInGarden_temp = [...plantsInGarden];
       plantsInGarden_temp.push(new_plantInGarden);
 
       dispatch(setPlantsInGarden(plantsInGarden_temp));
     } else {
-      if (new_cont_id == 50) {
-        // a. add plant to plantsArray ,
-        // cant do it yet until
-        const allPlants_temp = [...allPlants];
-
-        allPlants_temp.push(new_plant);
-        // console.log(allPlants_temp);
-
-        // console.log("all plants before new plant added" + ma.allPlants.length);
-        dispatch(allPlants_temp);
-
-        // console.log("all plants after new plant added" + ma.allPlants.length);
-
-        // b. update containersArray (set old container to vacancy: true and plant_id: null)
-        const allContainers_temp = [...allContainers];
-        const containerIndexO = allContainers_temp.findIndex(
-          (container) => container.id == old_cont_id
-        );
-        allContainers_temp[containerIndexO] = old_cont_obj;
-        // console.log(allContainers_temp);
-        dispatch(setAllContainers(allContainers_temp));
-
-        // remove from plantsInGarden
-        const plantsInGarden_temp = [...plantsInGarden];
-        const plantIndex = plantsInGarden_temp.findIndex(
-          (plant) => plant.id == plant_id
-        );
-        const plantRemoved = plantsInGarden_temp.splice(plantIndex, 1);
-        // console.log(plantsInGarden_temp);
-        dispatch(setPlantsInGarden(plantsInGarden_temp));
+      if (new_cont_id == 150) {
+        console.log("plant en 150 no haga nada");
       } else {
-        // update containers array , a. add plant in new container,
+        // a. add plant in new container,
 
-        const movedObj = {
-          id: new_cont_id,
-          plant_id: plant_id,
-          plant_pic: plant_pic,
-          vacancy: false,
-        };
-        const allContainers_temp = [...allContainers];
-        const containerIndexN = allContainers_temp.findIndex(
+        // addPlantNewCont(new_cont_id , movedObj);
+        const allContainers_temp2 = [...allContainers];
+        const containerIndexN = allContainers_temp2.findIndex(
           (container) => container.id == new_cont_id
         );
-        allContainers_temp[containerIndexN] = movedObj;
-        // dispatch(setAllContainers(allContainers_temp));
+        allContainers_temp2[containerIndexN] = movedObj;
+        console.log(allContainers_temp2);
+
+        dispatch(setAllContainers(allContainers_temp2));
 
         //   b. remove plant from old container(set to vacancy: true and plant_id: null)
 
-        const containerIndexO = allContainers_temp.findIndex(
+        const allContainers_temp3 = [...allContainers];
+        const containerIndexO = allContainers_temp3.findIndex(
           (container) => container.id == old_cont_id
         );
-        allContainers_temp[containerIndexO] = old_cont_obj;
-        dispatch(setAllContainers(allContainers_temp));
-        // console.log("after empty last cont" + allContainers);
+        allContainers_temp3[containerIndexO] = old_cont_obj;
+        dispatch(setAllContainers(allContainers_temp3));
       }
     }
   }
-  
 
-  
   return (
     <div className="frame">
-      <DndContext onDragEnd={handleDragEnd}>
+      <DndContext onDragEnd={HandleDragEnd}>
         <div className="row pt-4 frameInt   ">
           <div className="col-3  left_column  ">
             <Left_Column />

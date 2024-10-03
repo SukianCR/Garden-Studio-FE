@@ -240,8 +240,9 @@ export default function Right_Column() {
     // console.log("cv plants" + cvPlants?.length);
     updateCurrentList();
     return (
-      <ul className="list-group">
-        <Droppable id={50} key={50}>
+      <Droppable id={50} key={50}>
+        {" "}
+        <ul className="list-group">
           {newCV?.map((plant) => {
             const path = `./src/assets/pictures/${plant.pic}.png`;
 
@@ -266,8 +267,8 @@ export default function Right_Column() {
               );
             }
           })}
-        </Droppable>
-      </ul>
+        </ul>{" "}
+      </Droppable>
     );
   }
 

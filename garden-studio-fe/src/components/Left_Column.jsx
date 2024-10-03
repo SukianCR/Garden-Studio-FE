@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import { setCvShape, setCvPlants } from "../components_db/currentViewSlice.js";
 import { setGName, setGShape, setGPlants } from "../components_db/grdnSlice";
+import { Droppable } from "./Droppable.jsx";
+import { Draggable } from "./Draggable.jsx";
 
 export default function Left_Column() {
   // Set up for navigation and the store
@@ -216,9 +218,18 @@ export default function Left_Column() {
         {/* <MyGarden /> */}
       </div>
 
-      <div className="card  border border-dark-subtle ">
-        <h5 className="card-header center bg-primary">User Info</h5>
+      <div className="card  border border-dark-subtle mb-5">
+        <h5 className="card-header center bg-primary ">User Info</h5>
         <UserCard />
+      </div>
+
+      <div className="card  border border-dark-subtle ">
+        <h5 className="card-header center bg-primary">Droppable Area</h5>
+        <Droppable id={150} key={150}>
+          <div className=" center p-3 card-body bg-dark left-droppable-cont ">
+            Drop plants here{" "}
+          </div>
+        </Droppable>
       </div>
     </div>
   );

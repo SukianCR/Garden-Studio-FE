@@ -25,11 +25,11 @@
   flex-direction: column;
 }
 .drop_position {
-  padding: 3em;
   margin: 1em;
   display: flex;
   justify-content: center;
   border: rgba(255, 255, 255, 0.4) 1px dashed;
+  align-items: center;
 }
 
 .space-evenly {
@@ -184,15 +184,25 @@ select {
 .w20 {
   width: 20%;
 }
+
+.w15 {
+  width: 20%;
+}
+
 .w10 {
   width: 10%;
 }
-.home-container {
+.home-container,
+.left-droppable-cont {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 70%;
   justify-content: center;
+}
+
+.left-droppable-cont {
+  width: 100%;
 }
 
 .h-plant-card {
