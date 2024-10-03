@@ -10,6 +10,7 @@ import Garden_model from "./components/Garden_model";
 import Protected from "./components/Protected.jsx";
 import Home from "./components/Home";
 import Usr from "./components/Usr.jsx";
+import Buy from "./components/Buy.jsx";
 
 function App() {
   return (
@@ -21,13 +22,16 @@ function App() {
           <Route path="/usr/" element={<Usr />}></Route>
         </Route>
         <Route path="/garden" element={<Protected />}>
-          {/* <Route path="/garden" element={<Garden />}></Route> */}
           <Route path="/garden" element={<Garden_model />}></Route>
         </Route>
         <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/registration" element={<Registration />}></Route>
         <Route path="/c" element={<Garden_model />}></Route>
+
+        <Route path="/buy/" element={<Protected />}>
+          <Route path="/buy/" element={<Buy />}></Route>
+        </Route>
       </Routes>
     </Provider>
   );

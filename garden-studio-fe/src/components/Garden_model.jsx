@@ -264,9 +264,9 @@ export default function Garden_model() {
   }
 
   return (
-    <div className="frame">
+    <div className="frame pt-5">
       <DndContext onDragEnd={handleDragEnd}>
-        <div className="row pt-4 frameInt   ">
+        <div className="row frameInt   ">
           <div className="col-3  left_column  ">
             <Left_Column />
           </div>

@@ -36,6 +36,11 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.total {
+  display: flex;
+  justify-content: space-between;
+}
 .white-soft {
   color: rgba(255, 255, 255, 0.712);
 }
@@ -93,6 +98,12 @@
   background-color: rgba(255, 255, 0, 0.548);
 }
 
+.buy_paper {
+  background-color: #000000;
+  background-image: url("https://www.transparenttextures.com/patterns/notebook.png");
+}
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+
 /* .dragInGarden > p {
   font-size: 0.8em;
 }
@@ -107,6 +118,10 @@
 }
 .dragInGarden > img {
   width: 90px;
+}
+
+.plantInBuy {
+  width: 70px;
 }
 
 .left_column {
@@ -128,9 +143,17 @@ img {
 .pr-1 {
   padding-right: 1em;
 }
+
+.pr-025 {
+  padding-right: 2.5em;
+}
 .pl-050 {
   padding-left: 0.5em;
 }
+.pl-1 {
+  padding-left: 1em;
+}
+
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
   color: #62c462;

@@ -191,6 +191,7 @@ export default function Left_Column() {
               <button
                 type="button"
                 className="btn btn-outline-warning border border-warning-subtle btn-sm m-1 p-2"
+                onClick={() => navigate("/buy")}
               >
                 Buy Garden
               </button>
@@ -222,8 +223,6 @@ export default function Left_Column() {
         <h5 className="card-header center bg-primary ">User Info</h5>
         <UserCard />
       </div>
-
-     
     </div>
   );
 }
