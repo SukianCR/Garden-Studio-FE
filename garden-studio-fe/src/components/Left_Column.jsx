@@ -125,7 +125,7 @@ export default function Left_Column() {
   function GardenCard() {
     return (
       <div className=" center pt-3 card-body bg-dark ">
-        <div className="   mb-3 mt-3 ">
+        <div className="   mb-3 mt-3 w80">
           <form onSubmit={submit} name="formLogin">
             <input
               type="text"

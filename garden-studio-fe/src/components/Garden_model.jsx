@@ -14,6 +14,7 @@ import {
   setAllPlants,
   setReferencePlants,
 } from "../components_db/mainArraysSlice.js";
+import { useNavigate } from "react-router-dom";
 
 export default function Garden_model() {
   const ma = useSelector((state) => state.mainArrays);
@@ -25,10 +26,7 @@ export default function Garden_model() {
   const dispatch = useDispatch();
   const cv = useSelector((state) => state.currentView);
   const shap = cv.cvShape;
-  // useEffect(() => {
-  //   getAllContainers();
-  //   getAllPlants();
-  // }, []);
+  const navigate = useNavigate();
 
   function getAllPlants() {
     const allPlantsExtended = referencePlants?.plantList?.map((plant) => ({
@@ -40,6 +38,15 @@ export default function Garden_model() {
 
     // dispatch(setAllPlants(allPlantsExtended));
     // dispatch(setReferencePlants(allPlantsExtended));
+  }
+  function removeFPIG({ plant_id }) {
+    const plantsInGarden_temp = [...plantsInGarden];
+    const plantIndex = plantsInGarden_temp.findIndex(
+      (plant) => plant.id == plant_id
+    );
+    const plantRemoved = plantsInGarden_temp.splice(plantIndex, 1);
+    // console.log(plantsInGarden_temp);
+    dispatch(setPlantsInGarden(plantsInGarden_temp));
   }
 
   function DraggableMarkup({ plant_id, old_cont }) {
@@ -54,9 +61,16 @@ export default function Garden_model() {
       <>
         {" "}
         <Draggable id={plant_id} old_cont={old_cont}>
-          <div className="dragInGarden">
+          <div className="dragInGarden ">
             <p>{plant_name}</p>
-            <img src={path} className="plant_small" />
+            <img src={path} className="mb-2" />
+            <button
+              type="button"
+              className="btn btn-danger btn-sm"
+              // onClick={removeFPIG(plant_id)}
+            >
+              x
+            </button>
           </div>{" "}
         </Draggable>
       </>
@@ -87,62 +101,45 @@ export default function Garden_model() {
       </Droppable>
     );
   }
+  function GetDroppables() {
+    return (
+      <div className="mainContainer">
+        {allContainers.map((container) => (
+          <GetDroppable key={container.id} container={container} />
+        ))}
+      </div>
+    );
+  }
 
   function Bring_Shape() {
     switch (shap) {
       case 1:
         return (
-          <div className="   text-light  shape p-3  ">
-            {" "}
-            <div className="mainContainer">
-              {allContainers.map((container) => (
-                // We updated the Droppable component so it would accept an `id`
-                // prop and pass it to `useDroppable`
-                <GetDroppable key={container.id} container={container} />
-              ))}
-            </div>
+          <div className="text-light  shape p-3  ">
+            <GetDroppables />
           </div>
         );
 
       case 2:
         return (
           <div className="  text-light  shape p-3 rounded-circle  ">
-            {" "}
-            <div className="mainContainer">
-              {allContainers.map((container) => (
-                <GetDroppable key={container.id} container={container} />
-              ))}
-            </div>
+            <GetDroppables />
           </div>
         );
 
       case 3:
         return (
           <div className="   text-light  shape p-3 diamond ">
-            {" "}
-            <div className="mainContainer">
-              {allContainers.map((container) => (
-                // We updated the Droppable component so it would accept an `id`
-                // prop and pass it to `useDroppable`
-                <GetDroppable key={container.id} container={container} />
-              ))}
-            </div>
+            <GetDroppables />
           </div>
         );
 
-        case 4:
-          return (
-            <div className="   text-light  shape p-3 diamond ">
-              {" "}
-              <div className="mainContainer">
-                {allContainers.map((container) => (
-                  // We updated the Droppable component so it would accept an `id`
-                  // prop and pass it to `useDroppable`
-                  <GetDroppable key={container.id} container={container} />
-                ))}
-              </div>
-            </div>
-          );
+      case 4:
+        return (
+          <div className="   text-light  shape p-3 heart ">
+            <GetDroppables />
+          </div>
+        );
 
       default:
         return <></>;
@@ -276,7 +273,9 @@ export default function Garden_model() {
       }
     }
   }
-  const sep = " , ";
+  
+
+  
   return (
     <div className="frame">
       <DndContext onDragEnd={handleDragEnd}>
@@ -297,227 +296,3 @@ export default function Garden_model() {
     </div>
   );
 }
-
-// function getAllContainers() {
-//   const oc = [
-//     {
-//       id: 1,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 2,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 3,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 4,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 5,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 6,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 7,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 8,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 9,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-
-//     {
-//       id: 10,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 11,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 12,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 13,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 14,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 15,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 16,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 17,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 18,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 19,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-
-//     {
-//       id: 20,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 21,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 22,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 23,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 24,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 25,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 26,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 27,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 28,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 29,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 30,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 31,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 32,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 33,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 34,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 35,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//     {
-//       id: 36,
-//       plant_id: null,
-//       plant_pic: null,
-//       vacancy: true,
-//     },
-//   ];
-//   dispatch(setAllContainers(oc)), [];
-// }

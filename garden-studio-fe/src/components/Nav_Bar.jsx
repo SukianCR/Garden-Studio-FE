@@ -88,8 +88,8 @@ export default function Nav_Bar() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/user" className="nav-link text-success ">
-                {fname}
+                <NavLink to="/usr" className="nav-link text-success ">
+                  {fname}
                 </NavLink>
               </li>
 

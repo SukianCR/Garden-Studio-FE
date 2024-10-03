@@ -248,20 +248,18 @@ export default function Right_Column() {
             if (plant.in_garden == false) {
               return (
                 <Draggable id={plant.id} key={plant.id} old_cont={50}>
-                  <li className="list-group-item list-group-item-dark d-flex  border border-dark-subtle plant_box mb-2 rounded">
-                    <div className="center w80">
-                      <div className="center">
-                        {" "}
-                        <img src={path} />
+                  <li className="list-group-item list-group-item-dark d-flex  border border-dark-subtle plant_box mb-2 rounded w100 ">
+                    <div className="center">
+                      {" "}
+                      <img src={path} />
+                    </div>
+
+                    <div className="pc_info ">
+                      <div className="center  aife   ">
+                        <h6 className="text-danger">{plant.plant_name}</h6>
                       </div>
 
-                      <div className="row pc_info ">
-                        <div className="col-12 center  aife   ">
-                          <h6 className="text-danger">{plant.plant_name}</h6>
-                        </div>
-
-                        <div className="col-12">${plant.price} each</div>
-                      </div>
+                      <div className="">${plant.price} each</div>
                     </div>
                   </li>
                 </Draggable>
@@ -275,11 +273,9 @@ export default function Right_Column() {
 
   return (
     <>
-    
       <div className="card  mb-4 border border-dark-subtle">
         <h5 className="card-header center bg-primary ">Plants</h5>
 
-       
         <div className="card-body center fdc pb-4 bg-dark ">
           <div className="row pt-2 center ">
             <div className="col-6 center ">
