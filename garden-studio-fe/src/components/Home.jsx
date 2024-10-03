@@ -23,7 +23,7 @@ export default function Home() {
   }
 
   function GetPlantRow({ plant }) {
-    const picSrc = "./src/assets/pictures/" + plant.pic + ".png";
+    const picSrc = "../src/assets/pictures/" + plant.pic + ".png";
 
     return (
       <tr className="table-active ">
@@ -117,7 +117,7 @@ export default function Home() {
       <section className="mt-2 center  ">
         <div className=" mt-4 home-container  pt-2 pb-2 ">
           {ma?.referencePlants?.map((plant) => {
-            const picSrc = "./src/assets/pictures/" + plant.pic + ".png";
+            const picSrc = "../src/assets/pictures/" + plant.pic + ".png";
             return (
               <div key={plant.id} className="center ">
                 <div className="  h-plant-card  m-5 p-4 shadow  ">
