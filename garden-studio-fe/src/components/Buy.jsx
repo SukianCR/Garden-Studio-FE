@@ -50,6 +50,9 @@ export default function Buy() {
 
           <li className="list-group-item list-group-item-primary d-flex  bg-transparent border-0 p-1">
             <span className="text-info pr-1">{usr.email}</span>
+          </li>
+
+          <li className="list-group-item list-group-item-primary d-flex  bg-transparent border-0 p-1">
             {usr.fname + " " + usr.lname}
           </li>
 
@@ -70,9 +73,12 @@ export default function Buy() {
                     className="table-active  border-bottom border-dark-subtle"
                     key={plant.id}
                   >
-                    <th scope="row" className="bg-transparent">
+                    <td scope="row" className="bg-transparent">
+                      1
+                    </td>
+                    <td scope="row" className="bg-transparent">
                       {plant.name}
-                    </th>
+                    </td>
                     <td className="bg-transparent">
                       <img src={path} className="plantInBuy bg-transparent" />
                     </td>
@@ -83,17 +89,17 @@ export default function Buy() {
             </table>
           </li>
 
-          <li className="list-group-item list-group-item-primary d-flex  bg-transparent border-0  total ">
+          <li className="list-group-item list-group-item-primary d-flex  bg-transparent border-0 p-0 total ">
             <span className="text-danger ">Total:</span>{" "}
-            <span className="pr-025">${sum}</span>
+            <span className="pr-035 text-warning">${sum}</span>
           </li>
-          <li className="list-group-item list-group-item-primary d-flex  bg-transparent border-0 p-0 pt-2 ">
-              <button
-                type="submit"
-                className="btn btn-success border border-success-subtle btn-sm m-1 p-2"
-              >
-                Checkout
-              </button>{" "}
+          <li className="list-group-item list-group-item-primary d-flex  bg-transparent border-0 p-0 pt-3 ">
+            <button
+              type="submit"
+              className="btn btn-success border border-success-subtle btn-sm  p-2"
+            >
+              Checkout
+            </button>{" "}
           </li>
         </ul>
       </div>
