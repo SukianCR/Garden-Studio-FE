@@ -13,7 +13,24 @@ export default function Home() {
   const [pictures, setPictures] = useState([]);
 
   useEffect(() => {
-    imports();
+    const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const pictures_temp = [];
+
+    const fetchImage = async (pic) => {
+      try {
+        const response = await import(`../../images/${pic}.png`);
+        pictures_temp.push(response.default);
+        setPictures(pictures_temp);
+
+        console.log(response.default);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    picNums.forEach((pic) => fetchImage(pic));
+
+    console.log(pictures.length);
   }, []);
 
   setPixPaths(pictures);
@@ -41,8 +58,8 @@ export default function Home() {
     // const path = pictures[`${plant.pic}`];
     const index = plant.pic - 1;
 
-    //const path = paths[index];
-    const path = pictures[index];
+    const path = paths[index];
+    // const path = pictures[index];
 
     return (
       <tr className="table-active ">
