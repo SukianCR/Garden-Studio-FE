@@ -271,7 +271,6 @@ const mainArraysSlice = createSlice({
         id: 1,
         plant_name: "Dwarf",
         pic: "1",
-
         price: "15",
         zone: 1,
         water: 3,
@@ -281,7 +280,6 @@ const mainArraysSlice = createSlice({
       {
         id: 2,
         plant_name: "Crowberr",
-
         pic: "2",
         price: "20",
         zone: 2,
@@ -292,7 +290,6 @@ const mainArraysSlice = createSlice({
       {
         id: 3,
         plant_name: "Paper birc",
-
         pic: "3",
         price: "25",
         zone: 2,
@@ -303,7 +300,6 @@ const mainArraysSlice = createSlice({
       {
         id: 4,
         plant_name: "Bunchberry",
-
         pic: "4",
         price: "10",
         zone: 3,
@@ -314,7 +310,6 @@ const mainArraysSlice = createSlice({
       {
         id: 5,
         plant_name: "Eucalyptus",
-
         pic: "5",
         price: "20",
         zone: 4,
@@ -325,7 +320,6 @@ const mainArraysSlice = createSlice({
       {
         id: 6,
         plant_name: "Foxglove",
-
         pic: "6",
         price: "35",
         zone: 5,
@@ -336,7 +330,6 @@ const mainArraysSlice = createSlice({
       {
         id: 7,
         plant_name: "Common juniper",
-
         pic: "7",
         price: "15",
         zone: 5,
@@ -347,7 +340,6 @@ const mainArraysSlice = createSlice({
       {
         id: 8,
         plant_name: "Goldenrod",
-
         pic: "8",
         price: "40",
         zone: 6,
@@ -358,7 +350,6 @@ const mainArraysSlice = createSlice({
       {
         id: 9,
         plant_name: "Sugar maple",
-
         pic: "9",
         price: "30",
         zone: 7,
@@ -371,13 +362,24 @@ const mainArraysSlice = createSlice({
         id: 10,
         plant_name: "Crabapple tree",
         pic: "10",
-
         price: "25",
         zone: 7,
         water: 2,
         sun: 2,
         soil: 6,
       },
+    ],
+    pixPaths: [
+      "../../images/1.png",
+      "../../images/2.png",
+      "../../images/3.png",
+      "../../images/4.png",
+      "../../images/5.png",
+      "../../images/6.png",
+      "../../images/7.png",
+      "../../images/8.png",
+      "../../images/9.png",
+      "../../images/10.png",
     ],
   },
   reducers: {
@@ -395,6 +397,9 @@ const mainArraysSlice = createSlice({
     setReferencePlants: (state, { payload }) => {
       state.referencePlants = payload;
     },
+    setPixPaths: (state, { payload }) => {
+      state.pixPaths = payload;
+    },
   },
 });
 
@@ -403,6 +408,7 @@ export const {
   setAllContainers,
   setPlantsInGarden,
   setReferencePlants,
+  setPixPaths,
 } = mainArraysSlice.actions;
 
 export default mainArraysSlice.reducer;

@@ -33,6 +33,8 @@ export default function Buy() {
     picNums.forEach((pic) => fetchImage(pic));
   }, []);
 
+  
+
   function GetShape() {
     switch (shap) {
       case 1:

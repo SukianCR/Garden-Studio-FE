@@ -126,18 +126,9 @@ export default function Left_Column() {
 
   function GardenCard() {
     return (
-      <div className=" center pt-3 card-body bg-dark ">
+      <div className=" center  card-body bg-dark ">
         <div className="   mb-3 mt-3 w80">
           <form onSubmit={submit} name="formLogin">
-            <input
-              type="text"
-              className="form-control  form-control-sm bg-dark text-info  pb-2 pt-2 "
-              name="gname"
-              placeholder={grdn.name}
-              // onChange={updateForm}
-              required
-            />
-
             <div className="card-text center pt-3">
               {/* Shape: {grdn.shape} */}
               <select
@@ -162,9 +153,18 @@ export default function Left_Column() {
                 })}
               </select>
             </div>
-
             <div className="pt-3">
-              <small className="card-text text-warning pt-2">
+              <input
+                type="text"
+                className="form-control  form-control-sm bg-dark text-info  pb-2 pt-2 "
+                name="gname"
+                placeholder={grdn.name}
+                // onChange={updateForm}
+                required
+              />
+            </div>
+            <div className="pt-4">
+              <small className="card-text text-warning ">
                 Plants in the Garden
               </small>
               <ul className="list-group mb-4 mt-2 pig">
@@ -180,7 +180,7 @@ export default function Left_Column() {
                 })}
               </ul>
             </div>
-            <div className="space-evenly pt-1 pb-2">
+            <div className="space-evenly pb-2">
               {" "}
               <button
                 type="submit"

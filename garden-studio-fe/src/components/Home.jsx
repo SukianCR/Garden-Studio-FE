@@ -2,21 +2,27 @@ import { useSelector, useDispatch } from "react-redux";
 
 import React from "react";
 import { useEffect, useState } from "react";
+import { setPixPaths } from "../components_db/mainArraysSlice.js";
 // import uno from "../../images/1.png";
 export default function Home() {
   const ma = useSelector((state) => state.mainArrays);
+  const paths = ma.pixPaths;
   const plantsP = useSelector((state) => state.plantsP);
   const [pictures, setPictures] = useState([]);
+  
 
   useEffect(() => {
     const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const pictures_temp = [...pictures];
+    // const pictures_temp = [...pictures];
 
     const fetchImage = async (pic) => {
       try {
         const response = await import(`../../images/${pic}.png`);
-        pictures_temp.push(response.default);
-        setPictures(pictures_temp);
+        console.log(response.default);
+
+        // pictures_temp.push(response.default);
+        // setPictures(pictures_temp);
+        // console.log("pictures length " + pictures.length);
       } catch (err) {
         console.log(err);
       }
@@ -24,6 +30,9 @@ export default function Home() {
 
     picNums.forEach((pic) => fetchImage(pic));
   }, []);
+
+  setPixPaths(pictures);
+  console.log("paths.length " + paths.length);
 
   function GetPName({ name, id }) {
     switch (name) {
@@ -44,7 +53,10 @@ export default function Home() {
   }
 
   function GetPlantRow({ plant }) {
-    const path = pictures[`${plant.pic}`];
+    // const path = pictures[`${plant.pic}`];
+    const index = plant.pic - 1;
+
+    const path = paths[index];
 
     return (
       <tr className="table-active ">
@@ -142,7 +154,10 @@ export default function Home() {
           {ma?.referencePlants?.map((plant) => {
             // const picSrc = "src/assets/pictures/" + plant.pic + ".png";
 
-            const path = pictures[`${plant.pic}`];
+            // const path = pictures[`${plant.pic}`];
+            const index = plant.pic - 1;
+
+            const path = paths[index];
 
             return (
               <div key={plant.id} className="center ">

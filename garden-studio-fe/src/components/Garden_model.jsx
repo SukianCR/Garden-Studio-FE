@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 import { DndContext } from "@dnd-kit/core";
 import { Droppable } from "./Droppable";
 import { Draggable } from "./Draggable";
-import { HandleDragEnd } from "./HandleDragEnd";
-
-// import Original_Containers from "./Original_Containers";
 import Left_Column from "./Left_Column";
 import Right_Column from "./Right_Column";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,9 +10,7 @@ import {
   setAllContainers,
   setPlantsInGarden,
   setAllPlants,
-  setReferencePlants,
 } from "../components_db/mainArraysSlice.js";
-import { useNavigate } from "react-router-dom";
 
 export default function Garden_model() {
   const ma = useSelector((state) => state.mainArrays);
@@ -23,20 +18,19 @@ export default function Garden_model() {
   const allContainers = ma?.allContainers;
   const plantsInGarden = ma?.plantsInGarden;
   const referencePlants = ma?.referencePlants;
-
-  const dispatch = useDispatch();
+  const paths = ma.pixPaths;
   const cv = useSelector((state) => state.currentView);
   const shap = cv.cvShape;
-  const [pictures, setPictures] = useState([]);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const pictures_temp = [...pictures];
 
     const fetchImage = async (pic) => {
       try {
         const response = await import(`../../images/${pic}.png`);
-        pictures_temp.push(response.default);
-        setPictures(pictures_temp);
+        console.log(response.default);
       } catch (err) {
         console.log(err);
       }
@@ -48,7 +42,8 @@ export default function Garden_model() {
   function DraggableMarkup({ plant_id, old_cont }) {
     const plant_obj = referencePlants.filter((plant) => plant.id == plant_id);
 
-    const path = pictures[`${plant_obj[0]?.pic}`];
+    // const path = pictures[`${plant_obj[0]?.pic}`];
+    const path = paths[Number(`${plant_obj[0]?.pic}`)];
 
     const plant_name = plant_obj[0]?.plant_name;
 

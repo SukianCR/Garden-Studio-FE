@@ -18,6 +18,7 @@ export default function Right_Column() {
   const cv = useSelector((state) => state.currentView);
   const pplants = useSelector((state) => state.plantsP);
   const ma = useSelector((state) => state.mainArrays);
+  const paths = ma.pixPaths;
 
   const soils = pplants?.soils;
   const suns = pplants?.suns;
@@ -26,17 +27,13 @@ export default function Right_Column() {
 
   const allPlants = ma?.allPlants;
 
-  const [pictures, setPictures] = useState([]);
-
   useEffect(() => {
     const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const pictures_temp = [...pictures];
 
     const fetchImage = async (pic) => {
       try {
         const response = await import(`../../images/${pic}.png`);
-        pictures_temp.push(response.default);
-        setPictures(pictures_temp);
+        console.log(response.default);
       } catch (err) {
         console.log(err);
       }
@@ -246,14 +243,14 @@ export default function Right_Column() {
   }
 
   function Plant_List() {
-    // console.log("cv plants" + cvPlants?.length);
     updateCurrentList();
     return (
       <Droppable id={50} key={50}>
         {" "}
         <ul className="list-group">
           {newCV?.map((plant) => {
-            const path = pictures[`${plant.pic}`];
+            // const index = Number(plant.pic) - 1;
+            const path = paths[Number(plant.pic)];
 
             return (
               <Draggable id={plant.id} key={plant.id} old_cont={50}>
