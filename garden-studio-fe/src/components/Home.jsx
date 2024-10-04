@@ -4,6 +4,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { setPixPaths } from "../components_db/mainArraysSlice.js";
 import uno from "../../images/1.png";
+import imports from "./imports.js";
 
 export default function Home() {
   const ma = useSelector((state) => state.mainArrays);
@@ -12,24 +13,7 @@ export default function Home() {
   const [pictures, setPictures] = useState([]);
 
   useEffect(() => {
-    const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const pictures_temp = [];
-
-    const fetchImage = async (pic) => {
-      try {
-        const response = await import(`../../images/${pic}.png`);
-        pictures_temp.push(response.default);
-        setPictures(pictures_temp);
-
-        console.log(response.default);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    picNums.forEach((pic) => fetchImage(pic));
-
-    console.log(pictures.length);
+    imports();
   }, []);
 
   setPixPaths(pictures);
