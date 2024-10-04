@@ -26,7 +26,7 @@ export default function Home() {
   function GetPlantRow({ plant }) {
     // const picSrc = "../src/assets/pictures/" + plant.pic + ".png";
 
-    const picSrc = `./images/${plant.pic}.png`;
+    const picSrc = `../../images/${plant.pic}.png`;
     // const picSrc = `https://raw.githubusercontent.com/SukianCR/Garden-Studio-FE/refs/heads/main/garden-studio-fe/src/assets/pictures/${plant.pic}.png`;
 
     return (
@@ -123,7 +123,7 @@ export default function Home() {
         <div className=" mt-4 home-container  pt-2 pb-2 ">
           {ma?.referencePlants?.map((plant) => {
             // const picSrc = "src/assets/pictures/" + plant.pic + ".png";
-            const picSrc = `./images/${plant.pic}.png`;
+            const picSrc = `../../images/${plant.pic}.png`;
 
             return (
               <div key={plant.id} className="center ">
