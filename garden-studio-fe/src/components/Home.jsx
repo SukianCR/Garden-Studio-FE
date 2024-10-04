@@ -1,4 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
+import p1 from "../src/assets/pictures/1.png";
+import p2 from "../src/assets/pictures/2.png";
+import p3 from "../src/assets/pictures/3.png";
+import p4 from "../src/assets/pictures/4.png";
+import p5 from "../src/assets/pictures/5.png";
+import p6 from "../src/assets/pictures/6.png";
+import p7 from "../src/assets/pictures/7.png";
+import p8 from "../src/assets/pictures/8.png";
+import p9 from "../src/assets/pictures/9.png";
+import p10 from "../src/assets/pictures/10.png";
+
+import solarGnome from "../assets/homePage/solarGnome.png";
 
 export default function Home() {
   const ma = useSelector((state) => state.mainArrays);
@@ -23,7 +35,9 @@ export default function Home() {
   }
 
   function GetPlantRow({ plant }) {
-    const picSrc = "../assets/pictures/" + plant.pic + ".png";
+    // const picSrc = "../src/assets/pictures/" + plant.pic + ".png";
+
+    const picSrc = `../src/assets/pictures/${plant.pic}.png`;
 
     return (
       <tr className="table-active ">
@@ -117,12 +131,12 @@ export default function Home() {
       <section className="mt-2 center  ">
         <div className=" mt-4 home-container  pt-2 pb-2 ">
           {ma?.referencePlants?.map((plant) => {
-            const picSrc = "../assets/pictures/" + plant.pic + ".png";
+            const picSrc = "../src/assets/pictures/" + plant.pic + ".png";
+
             return (
               <div key={plant.id} className="center ">
                 <div className="  h-plant-card  m-5 p-4 shadow  ">
                   <div className="center   hoverable-button ">
-                    {" "}
                     <img src={picSrc} className="pb-2" />
                   </div>
                   <p className=" display-on-hover glow p-0">
