@@ -3,13 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import React from "react";
 import { useEffect, useState } from "react";
 import { setPixPaths } from "../components_db/mainArraysSlice.js";
-// import uno from "../../images/1.png";
+import uno from "../../images/1.png";
 export default function Home() {
   const ma = useSelector((state) => state.mainArrays);
   const paths = ma.pixPaths;
   const plantsP = useSelector((state) => state.plantsP);
   const [pictures, setPictures] = useState([]);
-  
 
   useEffect(() => {
     const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -148,7 +147,7 @@ export default function Home() {
     <>
       <h3 className="mt-5">Garden Studio</h3>
       <p className="text-warning"> 🌵 Design your own Garden 🌿</p>
-      {/* <img src={uno} /> */}
+      <img src={uno} />
       <section className="mt-2 center  ">
         <div className=" mt-4 home-container  pt-2 pb-2 ">
           {ma?.referencePlants?.map((plant) => {
