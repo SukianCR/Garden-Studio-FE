@@ -40,7 +40,9 @@ export default function Garden_model() {
   function DraggableMarkup({ plant_id, old_cont }) {
     const plant_obj = referencePlants.filter((plant) => plant.id == plant_id);
 
-    const path = "./src/assets/pictures/" + plant_obj[0]?.pic + ".png";
+    
+    const path = `./images/${plant_obj[0]?.pic}.png`;
+
     const plant_name = plant_obj[0]?.plant_name;
 
     //const path = "";

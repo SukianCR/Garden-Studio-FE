@@ -57,9 +57,7 @@ export default function Right_Column() {
         break;
     }
 
-    // console.log("cv" + cv);
-
-    // updateCurrentList();
+   
   };
 
   function updateCurrentList() {
@@ -244,7 +242,8 @@ export default function Right_Column() {
         {" "}
         <ul className="list-group">
           {newCV?.map((plant) => {
-            const path = `./src/assets/pictures/${plant.pic}.png`;
+            
+            const path = `./images/${plant.pic}.png`;
 
            
               return (

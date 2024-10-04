@@ -67,7 +67,8 @@ export default function Buy() {
           <li className="list-group-item list-group-item-primary d-flex  bg-transparent border-0 p-1 ">
             <table className="table table-hover  ">
               {plantsInGarden?.map((plant) => {
-                const path = `./src/assets/pictures/${plant.id}.png`;
+               
+                const path = `./images/${plant.pic}.png`;
                 return (
                   <tr
                     className="table-active  border-bottom border-dark-subtle"

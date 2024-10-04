@@ -1,7 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import p1 from "../assets/pictures/1.png";
-
 export default function Home() {
   const ma = useSelector((state) => state.mainArrays);
   const plantsP = useSelector((state) => state.plantsP);
@@ -27,7 +25,8 @@ export default function Home() {
   function GetPlantRow({ plant }) {
     // const picSrc = "../src/assets/pictures/" + plant.pic + ".png";
 
-    const picSrc = `../src/assets/pictures/${plant.pic}.png`;
+    const picSrc = `./images/${plant.pic}.png`;
+    // const picSrc = `https://raw.githubusercontent.com/SukianCR/Garden-Studio-FE/refs/heads/main/garden-studio-fe/src/assets/pictures/${plant.pic}.png`;
 
     return (
       <tr className="table-active ">
@@ -122,7 +121,7 @@ export default function Home() {
         <div className=" mt-4 home-container  pt-2 pb-2 ">
           {ma?.referencePlants?.map((plant) => {
             // const picSrc = "src/assets/pictures/" + plant.pic + ".png";
-            const picSrc = `../src/assets/pictures/${plant.pic}.png`;
+            const picSrc = `./images/${plant.pic}.png`;
 
             return (
               <div key={plant.id} className="center ">
@@ -142,18 +141,4 @@ export default function Home() {
       <Load_Plants_Table />
     </>
   );
-}
-
-{
-  /* <th scope="row">Active</th>
-<td>Column content</td>
-<td>Column content</td>
-<td>Column content</td>
-<td>Column content</td>
-<td>Column content</td> 
-
-  const filteredZone = zones.filter((zn) => zn.id == usr.zone);
-        Zone{" "}
-        <span className="text-warning pr-1 pl-050"> {filteredZone[0]?.id}</span>
-        &#x1F321; {filteredZone[0]?.name}&deg;F{" "} */
 }
