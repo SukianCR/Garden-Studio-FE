@@ -1,9 +1,96 @@
 import { useSelector, useDispatch } from "react-redux";
 import uno from "../../images/1.png";
+import dos from "../../images/2.png";
+import tres from "../../images/3.png";
+import cuatro from "../../images/4.png";
+import cinco from "../../images/5.png";
+import seis from "../../images/6.png";
+import siete from "../../images/7.png";
+import ocho from "../../images/8.png";
+import nueve from "../../images/9.png";
+import diez from "../../images/10.png";
 
 export default function Home() {
   const ma = useSelector((state) => state.mainArrays);
   const plantsP = useSelector((state) => state.plantsP);
+
+  function GetImg({ pic }) {
+    switch (pic) {
+      case 1:
+        return (
+          <>
+            {" "}
+            <img src={uno} />
+          </>
+        );
+      case 2:
+        return (
+          <>
+            {" "}
+            <img src={dos} />
+          </>
+        );
+
+      case 3:
+        return (
+          <>
+            {" "}
+            <img src={tres} />
+          </>
+        );
+      case 4:
+        return (
+          <>
+            {" "}
+            <img src={cuatro} />
+          </>
+        );
+      case 5:
+        return (
+          <>
+            {" "}
+            <img src={cinco} />
+          </>
+        );
+      case 6:
+        return (
+          <>
+            {" "}
+            <img src={seis} />
+          </>
+        );
+      case 7:
+        return (
+          <>
+            {" "}
+            <img src={siete} />
+          </>
+        );
+      case 8:
+        return (
+          <>
+            {" "}
+            <img src={ocho} />
+          </>
+        );
+      case 9:
+        return (
+          <>
+            {" "}
+            <img src={nueve} />
+          </>
+        );
+      case 10:
+        return (
+          <>
+            {" "}
+            <img src={diez} />
+          </>
+        );
+      default:
+        return <></>;
+    }
+  }
 
   function GetPName({ name, id }) {
     switch (name) {
@@ -24,18 +111,14 @@ export default function Home() {
   }
 
   function GetPlantRow({ plant }) {
-    // const picSrc = "../src/assets/pictures/" + plant.pic + ".png";
-
-    const picSrc = `../../images/${plant.pic}.png`;
-    // const picSrc = `https://raw.githubusercontent.com/SukianCR/Garden-Studio-FE/refs/heads/main/garden-studio-fe/src/assets/pictures/${plant.pic}.png`;
-
     return (
       <tr className="table-active ">
         <td scope="row">{plant.plant_name}</td>
 
         <td>
-          <img src={picSrc} className="table_img" />
+          <GetImg pic={plant.pic} />
         </td>
+
         <td>
           <GetPName key={plant.zone} name="zone" id={plant.zone} />
         </td>
