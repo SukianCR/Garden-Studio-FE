@@ -11,10 +11,10 @@ export default function Home() {
   const paths = ma.pixPaths;
   const plantsP = useSelector((state) => state.plantsP);
   const [pictures, setPictures] = useState([]);
+  const pictures_temp = [];
 
   useEffect(() => {
     const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const pictures_temp = [];
 
     const fetchImage = async (pic) => {
       try {
@@ -32,8 +32,10 @@ export default function Home() {
 
     console.log(pictures.length);
   }, []);
+
   alert("pictures lenght" + pictures.length);
-  alert("pictures 1 content" + pictures[0]);
+
+  pictures.forEach((pic) => console.log("pictures " + pic));
 
   setPixPaths(pictures);
   alert("paths length " + paths.length);
