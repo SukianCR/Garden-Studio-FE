@@ -14,6 +14,25 @@ export default function Buy() {
   const shap = cv.cvShape;
   const today = new Date();
 
+  const [pictures, setPictures] = useState([]);
+
+  useEffect(() => {
+    const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const pictures_temp = [...pictures];
+
+    const fetchImage = async (pic) => {
+      try {
+        const response = await import(`../../images/${pic}.png`);
+        pictures_temp.push(response.default);
+        setPictures(pictures_temp);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    picNums.forEach((pic) => fetchImage(pic));
+  }, []);
+
   function GetShape() {
     switch (shap) {
       case 1:
@@ -59,7 +78,7 @@ export default function Buy() {
           <li className="list-group-item list-group-item-primary d-flex  bg-transparent border-0 p-1">
             <span className="text-success pr-1">Garden: </span>{" "}
             <span className="pr-1">{grdn.name}</span>
-            <GetShape />
+            <span className="text-success pr-1">Shape: </span>{" "} <GetShape />
           </li>
           <li className="list-group-item list-group-item-primary d-flex  bg-transparent border-0 p-1 text-warning pt-4">
             Plants in Garden
@@ -67,9 +86,8 @@ export default function Buy() {
           <li className="list-group-item list-group-item-primary d-flex  bg-transparent border-0 p-1 ">
             <table className="table table-hover  ">
               {plantsInGarden?.map((plant) => {
-               
-                const path = `./images/${plant.pic}.png`;
-                
+                const path = pictures[`${plant.pic}`];
+
                 return (
                   <tr
                     className="table-active  border-bottom border-dark-subtle"
