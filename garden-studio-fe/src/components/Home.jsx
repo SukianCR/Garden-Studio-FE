@@ -11,10 +11,10 @@ export default function Home() {
   useEffect(() => {
     const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const pictures_temp = [...pictures];
-   
+
     const fetchImage = async (pic) => {
       try {
-        const response = await import(`../../images/${pic}.png`); 
+        const response = await import(`../../images/${pic}.png`);
         pictures_temp.push(response.default);
         setPictures(pictures_temp);
       } catch (err) {
@@ -23,9 +23,6 @@ export default function Home() {
     };
 
     picNums.forEach((pic) => fetchImage(pic));
-    
-
-    
   }, []);
 
   function GetPName({ name, id }) {
@@ -47,15 +44,14 @@ export default function Home() {
   }
 
   function GetPlantRow({ plant }) {
-    const path = `../../images/${plant.pic}.png`;
-    const path2 = pictures[`${plant.pic}`];
+    const path = pictures[`${plant.pic}`];
 
     return (
       <tr className="table-active ">
         <td scope="row">{plant.plant_name}</td>
 
         <td>
-          <img src={path2} />
+          <img src={path} />
         </td>
 
         <td>
@@ -145,13 +141,14 @@ export default function Home() {
         <div className=" mt-4 home-container  pt-2 pb-2 ">
           {ma?.referencePlants?.map((plant) => {
             // const picSrc = "src/assets/pictures/" + plant.pic + ".png";
-            const picSrc = `../../images/${plant.pic}.png`;
+
+            const path = pictures[`${plant.pic}`];
 
             return (
               <div key={plant.id} className="center ">
                 <div className="  h-plant-card  m-5 p-4 shadow  ">
                   <div className="center   hoverable-button ">
-                    <img src={picSrc} className="pb-2" />
+                    <img src={path} className="pb-2" />
                   </div>
                   <p className=" display-on-hover glow p-0">
                     {plant.plant_name}
