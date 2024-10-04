@@ -4,6 +4,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { setPixPaths } from "../components_db/mainArraysSlice.js";
 import uno from "../../images/1.png";
+
 export default function Home() {
   const ma = useSelector((state) => state.mainArrays);
   const paths = ma.pixPaths;
@@ -18,6 +19,7 @@ export default function Home() {
       try {
         const response = await import(`../../images/${pic}.png`);
         pictures_temp.push(response.default);
+        setPictures(pictures_temp);
 
         console.log(response.default);
       } catch (err) {
@@ -26,7 +28,8 @@ export default function Home() {
     };
 
     picNums.forEach((pic) => fetchImage(pic));
-    setPictures(pictures_temp);
+
+    console.log(pictures.length);
   }, []);
 
   setPixPaths(pictures);
