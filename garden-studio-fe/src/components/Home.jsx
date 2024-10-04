@@ -32,9 +32,9 @@ export default function Home() {
 
     console.log(pictures.length);
   }, []);
-
+  alert("pictures lenght" + pictures.length);
   setPixPaths(pictures);
-  console.log("paths.length " + paths.length);
+  alert("paths length " + paths.length);
 
   function GetPName({ name, id }) {
     switch (name) {
