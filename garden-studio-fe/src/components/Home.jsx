@@ -1,14 +1,12 @@
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import React from "react";
 import { useEffect, useState } from "react";
-import { setPixPaths } from "../components_db/mainArraysSlice.js";
+
 import uno from "../../images/1.png";
-import imports from "./imports.js";
+import { setPixPaths } from "../components_db/mainArraysSlice.js";
 
 export default function Home() {
-  const ma = useSelector((state) => state.mainArrays);
-  const paths = ma.pixPaths;
   const plantsP = useSelector((state) => state.plantsP);
   const [pictures, setPictures] = useState([]);
   const pictures_temp = [];
@@ -38,7 +36,9 @@ export default function Home() {
   pictures.forEach((pic) => console.log("pictures " + pic));
 
   setPixPaths(pictures);
-  alert("paths length " + paths.length);
+  const ma = useSelector((state) => state.mainArrays);
+  const paths = ma.pixPaths;
+  console.log("paths lenght " + paths.length);
 
   function GetPName({ name, id }) {
     switch (name) {
