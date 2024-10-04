@@ -69,6 +69,7 @@ export default function Buy() {
               {plantsInGarden?.map((plant) => {
                
                 const path = `./images/${plant.pic}.png`;
+                
                 return (
                   <tr
                     className="table-active  border-bottom border-dark-subtle"
