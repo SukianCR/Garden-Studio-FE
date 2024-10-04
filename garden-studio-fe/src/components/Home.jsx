@@ -6,19 +6,26 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const ma = useSelector((state) => state.mainArrays);
   const plantsP = useSelector((state) => state.plantsP);
-  const [uno, setUno] = useState(null);
+  const [pictures, setPictures] = useState([]);
 
   useEffect(() => {
-    const fetchImage = async () => {
+    const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const pictures_temp = [...pictures];
+   
+    const fetchImage = async (pic) => {
       try {
-        const response = await import(`../../images/1.png`); // change relative path to suit your needs
-        setUno(response.default);
+        const response = await import(`../../images/${pic}.png`); 
+        pictures_temp.push(response.default);
+        setPictures(pictures_temp);
       } catch (err) {
         // setError(err)
       }
     };
 
-    fetchImage();
+    picNums.forEach((pic) => fetchImage(pic));
+    
+
+    
   }, []);
 
   function GetPName({ name, id }) {
@@ -41,12 +48,14 @@ export default function Home() {
 
   function GetPlantRow({ plant }) {
     const path = `../../images/${plant.pic}.png`;
+    const path2 = pictures[`${plant.pic}`];
+
     return (
       <tr className="table-active ">
         <td scope="row">{plant.plant_name}</td>
 
         <td>
-          <img src={path} />
+          <img src={path2} />
         </td>
 
         <td>
@@ -131,7 +140,7 @@ export default function Home() {
     <>
       <h3 className="mt-5">Garden Studio</h3>
       <p className="text-warning"> 🌵 Design your own Garden 🌿</p>
-      <img src={uno} />
+      {/* <img src={uno} /> */}
       <section className="mt-2 center  ">
         <div className=" mt-4 home-container  pt-2 pb-2 ">
           {ma?.referencePlants?.map((plant) => {
