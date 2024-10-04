@@ -57,7 +57,8 @@ export default function Home() {
     // const path = pictures[`${plant.pic}`];
     const index = plant.pic - 1;
 
-    const path = paths[index];
+    //const path = paths[index];
+    const path = pictures[index];
 
     return (
       <tr className="table-active ">
