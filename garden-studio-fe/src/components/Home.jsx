@@ -9,7 +9,7 @@ import { setPixPaths } from "../components_db/mainArraysSlice.js";
 export default function Home() {
   const plantsP = useSelector((state) => state.plantsP);
   const [pictures, setPictures] = useState([]);
-  const pictures_temp = [];
+  const paths_temp = [];
 
   useEffect(() => {
     const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -17,8 +17,14 @@ export default function Home() {
     const fetchImage = async (pic) => {
       try {
         const response = await import(`../../images/${pic}.png`);
-        pictures_temp.push(response.default);
-        setPictures(pictures_temp);
+
+        const newPath = {
+          pic: pic,
+          path: response.default,
+        };
+        paths_temp.push(newPath);
+
+        setPictures(paths_temp);
 
         console.log(response.default);
       } catch (err) {
@@ -33,7 +39,7 @@ export default function Home() {
 
   alert("pictures lenght" + pictures.length);
 
-  pictures.forEach((pic) => console.log("pictures " + pic));
+  pictures.forEach((pic) => console.log("paths " + pic.path));
 
   setPixPaths(pictures);
   const ma = useSelector((state) => state.mainArrays);
