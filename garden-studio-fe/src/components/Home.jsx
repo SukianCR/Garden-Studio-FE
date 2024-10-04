@@ -33,6 +33,8 @@ export default function Home() {
     console.log(pictures.length);
   }, []);
   alert("pictures lenght" + pictures.length);
+  alert("pictures 1 content" + pictures[0]);
+
   setPixPaths(pictures);
   alert("paths length " + paths.length);
 
@@ -58,8 +60,8 @@ export default function Home() {
     // const path = pictures[`${plant.pic}`];
     const index = plant.pic - 1;
 
-    const path = paths[index];
-    // const path = pictures[index];
+    // const path = paths[index];
+    const path = pictures[index];
 
     return (
       <tr className="table-active ">
