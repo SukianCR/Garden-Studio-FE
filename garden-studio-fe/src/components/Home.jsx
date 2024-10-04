@@ -18,10 +18,6 @@ export default function Home() {
       try {
         const response = await import(`../../images/${pic}.png`);
         console.log(response.default);
-
-        // pictures_temp.push(response.default);
-        // setPictures(pictures_temp);
-        // console.log("pictures length " + pictures.length);
       } catch (err) {
         console.log(err);
       }
@@ -30,7 +26,7 @@ export default function Home() {
     picNums.forEach((pic) => fetchImage(pic));
   }, []);
 
-  setPixPaths(pictures);
+  // setPixPaths(pictures);
   console.log("paths.length " + paths.length);
 
   function GetPName({ name, id }) {
