@@ -12,11 +12,13 @@ export default function Home() {
 
   useEffect(() => {
     const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    // const pictures_temp = [...pictures];
+    const pictures_temp = [];
 
     const fetchImage = async (pic) => {
       try {
         const response = await import(`../../images/${pic}.png`);
+        pictures_temp.push(response.default);
+
         console.log(response.default);
       } catch (err) {
         console.log(err);
@@ -24,9 +26,10 @@ export default function Home() {
     };
 
     picNums.forEach((pic) => fetchImage(pic));
+    setPictures(pictures_temp);
   }, []);
 
-  // setPixPaths(pictures);
+  setPixPaths(pictures);
   console.log("paths.length " + paths.length);
 
   function GetPName({ name, id }) {
