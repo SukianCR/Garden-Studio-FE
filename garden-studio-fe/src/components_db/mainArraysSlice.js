@@ -8,7 +8,7 @@ const mainArraysSlice = createSlice({
       {
         id: 1,
         plant_name: "Dwarf",
-        pic: "1",
+        pic: "0",
 
         price: "15",
         zone: 1,
@@ -20,7 +20,7 @@ const mainArraysSlice = createSlice({
         id: 2,
         plant_name: "Crowberr",
 
-        pic: "2",
+        pic: "1",
         price: "20",
         zone: 2,
         water: 1,
@@ -31,7 +31,7 @@ const mainArraysSlice = createSlice({
         id: 3,
         plant_name: "Paper birc",
 
-        pic: "3",
+        pic: "2",
         price: "25",
         zone: 2,
         water: 3,
@@ -42,7 +42,7 @@ const mainArraysSlice = createSlice({
         id: 4,
         plant_name: "Bunchberry",
 
-        pic: "4",
+        pic: "3",
         price: "10",
         zone: 3,
         water: 4,
@@ -53,7 +53,7 @@ const mainArraysSlice = createSlice({
         id: 5,
         plant_name: "Eucalyptus",
 
-        pic: "5",
+        pic: "4",
         price: "20",
         zone: 4,
         water: 5,
@@ -64,7 +64,7 @@ const mainArraysSlice = createSlice({
         id: 6,
         plant_name: "Foxglove",
 
-        pic: "6",
+        pic: "5",
         price: "35",
         zone: 5,
         water: 5,
@@ -75,7 +75,7 @@ const mainArraysSlice = createSlice({
         id: 7,
         plant_name: "Common juniper",
 
-        pic: "7",
+        pic: "6",
         price: "15",
         zone: 5,
         water: 5,
@@ -86,7 +86,7 @@ const mainArraysSlice = createSlice({
         id: 8,
         plant_name: "Goldenrod",
 
-        pic: "8",
+        pic: "7",
         price: "40",
         zone: 6,
         water: 4,
@@ -97,7 +97,7 @@ const mainArraysSlice = createSlice({
         id: 9,
         plant_name: "Sugar maple",
 
-        pic: "9",
+        pic: "8",
         price: "30",
         zone: 7,
         water: 1,
@@ -108,7 +108,7 @@ const mainArraysSlice = createSlice({
       {
         id: 10,
         plant_name: "Crabapple tree",
-        pic: "10",
+        pic: "9",
 
         price: "25",
         zone: 7,
@@ -270,7 +270,7 @@ const mainArraysSlice = createSlice({
       {
         id: 1,
         plant_name: "Dwarf",
-        pic: "1",
+        pic: "0",
 
         price: "15",
         zone: 1,
@@ -282,7 +282,7 @@ const mainArraysSlice = createSlice({
         id: 2,
         plant_name: "Crowberr",
 
-        pic: "2",
+        pic: "1",
         price: "20",
         zone: 2,
         water: 1,
@@ -293,7 +293,7 @@ const mainArraysSlice = createSlice({
         id: 3,
         plant_name: "Paper birc",
 
-        pic: "3",
+        pic: "2",
         price: "25",
         zone: 2,
         water: 3,
@@ -304,7 +304,7 @@ const mainArraysSlice = createSlice({
         id: 4,
         plant_name: "Bunchberry",
 
-        pic: "4",
+        pic: "3",
         price: "10",
         zone: 3,
         water: 4,
@@ -315,7 +315,7 @@ const mainArraysSlice = createSlice({
         id: 5,
         plant_name: "Eucalyptus",
 
-        pic: "5",
+        pic: "4",
         price: "20",
         zone: 4,
         water: 5,
@@ -326,7 +326,7 @@ const mainArraysSlice = createSlice({
         id: 6,
         plant_name: "Foxglove",
 
-        pic: "6",
+        pic: "5",
         price: "35",
         zone: 5,
         water: 5,
@@ -337,7 +337,7 @@ const mainArraysSlice = createSlice({
         id: 7,
         plant_name: "Common juniper",
 
-        pic: "7",
+        pic: "6",
         price: "15",
         zone: 5,
         water: 5,
@@ -348,7 +348,7 @@ const mainArraysSlice = createSlice({
         id: 8,
         plant_name: "Goldenrod",
 
-        pic: "8",
+        pic: "7",
         price: "40",
         zone: 6,
         water: 4,
@@ -359,7 +359,7 @@ const mainArraysSlice = createSlice({
         id: 9,
         plant_name: "Sugar maple",
 
-        pic: "9",
+        pic: "8",
         price: "30",
         zone: 7,
         water: 1,
@@ -370,7 +370,7 @@ const mainArraysSlice = createSlice({
       {
         id: 10,
         plant_name: "Crabapple tree",
-        pic: "10",
+        pic: "9",
 
         price: "25",
         zone: 7,
