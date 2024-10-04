@@ -15,7 +15,8 @@ export default function Home() {
   const plantsP = useSelector((state) => state.plantsP);
 
   function GetImg({ pic }) {
-    switch (pic) {
+    const picInt = parseInt(pic, 10);
+    switch (picInt) {
       case 1:
         return (
           <>
