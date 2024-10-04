@@ -18,7 +18,7 @@ export default function Home() {
         pictures_temp.push(response.default);
         setPictures(pictures_temp);
       } catch (err) {
-        // setError(err)
+        console.log(err);
       }
     };
 

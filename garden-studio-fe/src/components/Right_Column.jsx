@@ -11,7 +11,6 @@ import {
   setSoil,
   setWater,
   setZone,
-  setCvPlants,
 } from "../components_db/currentViewSlice.js";
 
 export default function Right_Column() {
@@ -20,17 +19,31 @@ export default function Right_Column() {
   const pplants = useSelector((state) => state.plantsP);
   const ma = useSelector((state) => state.mainArrays);
 
-  const cvPlants = cv?.cvPlants;
-
   const soils = pplants?.soils;
   const suns = pplants?.suns;
   const waters = pplants?.waters;
   const zones = pplants?.zones;
 
   const allPlants = ma?.allPlants;
-  const allContainers = ma?.allContainers;
-  const plantsInGarden = ma?.plantsInGarden;
-  const referencePlants = ma?.referencePlants;
+
+  const [pictures, setPictures] = useState([]);
+
+  useEffect(() => {
+    const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const pictures_temp = [...pictures];
+
+    const fetchImage = async (pic) => {
+      try {
+        const response = await import(`../../images/${pic}.png`);
+        pictures_temp.push(response.default);
+        setPictures(pictures_temp);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    picNums.forEach((pic) => fetchImage(pic));
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -56,8 +69,6 @@ export default function Right_Column() {
       default:
         break;
     }
-
-   
   };
 
   function updateCurrentList() {
@@ -242,29 +253,26 @@ export default function Right_Column() {
         {" "}
         <ul className="list-group">
           {newCV?.map((plant) => {
-            
-            const path = `./images/${plant.pic}.png`;
+            const path = pictures[`${plant.pic}`];
 
-           
-              return (
-                <Draggable id={plant.id} key={plant.id} old_cont={50}>
-                  <li className="list-group-item list-group-item-dark d-flex  border border-dark-subtle plant_box mb-2 rounded w100 ">
-                    <div className="center">
-                      {" "}
-                      <img src={path} />
+            return (
+              <Draggable id={plant.id} key={plant.id} old_cont={50}>
+                <li className="list-group-item list-group-item-dark d-flex  border border-dark-subtle plant_box mb-2 rounded w100 ">
+                  <div className="center">
+                    {" "}
+                    <img src={path} />
+                  </div>
+
+                  <div className="pc_info ">
+                    <div className="center  aife   ">
+                      <h6 className="text-danger">{plant.plant_name}</h6>
                     </div>
 
-                    <div className="pc_info ">
-                      <div className="center  aife   ">
-                        <h6 className="text-danger">{plant.plant_name}</h6>
-                      </div>
-
-                      <div className="">${plant.price} each</div>
-                    </div>
-                  </li>
-                </Draggable>
-              );
-            
+                    <div className="">${plant.price} each</div>
+                  </div>
+                </li>
+              </Draggable>
+            );
           })}
         </ul>{" "}
       </Droppable>
