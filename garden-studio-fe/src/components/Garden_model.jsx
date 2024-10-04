@@ -24,21 +24,6 @@ export default function Garden_model() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-    const fetchImage = async (pic) => {
-      try {
-        const response = await import(`../../images/${pic}.png`);
-        console.log(response.default);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    picNums.forEach((pic) => fetchImage(pic));
-  }, []);
-
   function DraggableMarkup({ plant_id, old_cont }) {
     const plant_obj = referencePlants.filter((plant) => plant.id == plant_id);
 

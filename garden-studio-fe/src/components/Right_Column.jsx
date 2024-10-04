@@ -27,20 +27,7 @@ export default function Right_Column() {
 
   const allPlants = ma?.allPlants;
 
-  useEffect(() => {
-    const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-    const fetchImage = async (pic) => {
-      try {
-        const response = await import(`../../images/${pic}.png`);
-        console.log(response.default);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    picNums.forEach((pic) => fetchImage(pic));
-  }, []);
 
   const dispatch = useDispatch();
 
