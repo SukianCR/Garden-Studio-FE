@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import uno from "../../images/1.png";
 
 export default function Home() {
   const ma = useSelector((state) => state.mainArrays);
@@ -117,6 +118,7 @@ export default function Home() {
     <>
       <h3 className="mt-5">Garden Studio</h3>
       <p className="text-warning"> 🌵 Design your own Garden 🌿</p>
+      <img src={uno} />
       <section className="mt-2 center  ">
         <div className=" mt-4 home-container  pt-2 pb-2 ">
           {ma?.referencePlants?.map((plant) => {
