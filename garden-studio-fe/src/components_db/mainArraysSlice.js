@@ -369,7 +369,6 @@ const mainArraysSlice = createSlice({
         soil: 6,
       },
     ],
-    pixPaths: [],
   },
   reducers: {
     setAllPlants: (state, { payload }) => {
@@ -386,9 +385,6 @@ const mainArraysSlice = createSlice({
     setReferencePlants: (state, { payload }) => {
       state.referencePlants = payload;
     },
-    setPixPaths: (state, { payload }) => {
-      state.pixPaths = payload;
-    },
   },
 });
 
@@ -397,7 +393,6 @@ export const {
   setAllContainers,
   setPlantsInGarden,
   setReferencePlants,
-  setPixPaths,
 } = mainArraysSlice.actions;
 
 export default mainArraysSlice.reducer;

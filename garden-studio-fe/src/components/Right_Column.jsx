@@ -18,7 +18,8 @@ export default function Right_Column() {
   const cv = useSelector((state) => state.currentView);
   const pplants = useSelector((state) => state.plantsP);
   const ma = useSelector((state) => state.mainArrays);
-  const paths = ma.pixPaths;
+  const grdn = useSelector((state) => state.grdn);
+  const paths = grdn.paths;
 
   const soils = pplants?.soils;
   const suns = pplants?.suns;
@@ -26,8 +27,6 @@ export default function Right_Column() {
   const zones = pplants?.zones;
 
   const allPlants = ma?.allPlants;
-
-
 
   const dispatch = useDispatch();
 

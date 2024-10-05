@@ -7,6 +7,7 @@ const grdnSlice = createSlice({
     name: "New Garden",
     shape: "1",
     plants: [],
+    paths: [],
   },
   reducers: {
     setGName: (state, { payload }) => {
@@ -20,9 +21,13 @@ const grdnSlice = createSlice({
     setGPlants: (state, { payload }) => {
       state.plants = payload;
     },
+
+    setPaths: (state, { payload }) => {
+      state.paths = payload;
+    },
   },
 });
 
-export const { setGName, setGShape, setGPlants } = grdnSlice.actions;
+export const { setGName, setGShape, setGPlants, setPaths } = grdnSlice.actions;
 
 export default grdnSlice.reducer;

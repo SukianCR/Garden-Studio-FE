@@ -4,12 +4,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 
 import uno from "../../images/1.png";
-import { setPixPaths } from "../components_db/mainArraysSlice.js";
+import { setPaths, setGPlants } from "../components_db/grdnSlice";
 
 export default function Home() {
   const plantsP = useSelector((state) => state.plantsP);
   const [pictures, setPictures] = useState([]);
   const paths_temp = [];
+  const grdn = useSelector((state) => state.grdn);
+  const paths = grdn.paths;
+  const ma = useSelector((state) => state.mainArrays);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -22,6 +27,7 @@ export default function Home() {
           pic: pic,
           path: response.default,
         };
+
         paths_temp.push(newPath);
 
         setPictures(paths_temp);
@@ -37,14 +43,11 @@ export default function Home() {
     console.log(pictures.length);
   }, []);
 
-  alert("pictures lenght" + pictures.length);
-
   pictures.forEach((pic) => console.log("paths " + pic.path));
 
-  setPixPaths(pictures);
-  const ma = useSelector((state) => state.mainArrays);
-  const paths = ma.pixPaths;
-  console.log("paths lenght " + paths.length);
+  dispatch(setPaths(pictures));
+
+  console.log("paths length " + paths?.length);
 
   function GetPName({ name, id }) {
     switch (name) {
@@ -69,7 +72,7 @@ export default function Home() {
     const index = plant.pic - 1;
 
     // const path = paths[index];
-    const path = pictures[index];
+    const path = paths[index].path;
 
     return (
       <tr className="table-active ">
@@ -166,11 +169,10 @@ export default function Home() {
         <div className=" mt-4 home-container  pt-2 pb-2 ">
           {ma?.referencePlants?.map((plant) => {
             // const picSrc = "src/assets/pictures/" + plant.pic + ".png";
-
             // const path = pictures[`${plant.pic}`];
             const index = plant.pic - 1;
 
-            const path = paths[index];
+            const path = paths[index].path;
 
             return (
               <div key={plant.id} className="center ">
