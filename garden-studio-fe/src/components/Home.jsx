@@ -20,30 +20,23 @@ export default function Home() {
     const paths_temp = [];
     const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-    const fetchImage = async (pic) => {
+    const fetchImage = async (pic, paths_temp) => {
       try {
         const response = await import(`../../images/${pic}.png`);
 
         paths_temp.push(response.default);
-
         setPictures(paths_temp);
-
-        console.log(response.default);
       } catch (err) {
         console.log(err);
       }
     };
 
-    picNums.forEach((pic) => fetchImage(pic));
-
-    console.log(pictures.length);
+    picNums.forEach((pic) => fetchImage(pic, paths_temp));
   }, []);
 
-  pictures.forEach((pic) => console.log("paths " + pic.path));
+  // pictures.forEach((pic) => console.log("paths " + pic));
 
   dispatch(setPaths(pictures));
-
-  console.log("paths length " + paths?.length);
 
   function GetPName({ name, id }) {
     switch (name) {
