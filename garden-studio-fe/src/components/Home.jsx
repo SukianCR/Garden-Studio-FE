@@ -9,7 +9,7 @@ import { setPaths, setGPlants } from "../components_db/grdnSlice";
 export default function Home() {
   const plantsP = useSelector((state) => state.plantsP);
   const [pictures, setPictures] = useState([]);
-  const paths_temp = [];
+
   const grdn = useSelector((state) => state.grdn);
   const paths = grdn.paths;
   const ma = useSelector((state) => state.mainArrays);
@@ -17,18 +17,14 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const paths_temp = [];
     const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     const fetchImage = async (pic) => {
       try {
         const response = await import(`../../images/${pic}.png`);
 
-        const newPath = {
-          pic: pic,
-          path: response.default,
-        };
-
-        paths_temp.push(newPath);
+        paths_temp.push(response.default);
 
         setPictures(paths_temp);
 
@@ -72,7 +68,7 @@ export default function Home() {
     const index = plant.pic - 1;
 
     // const path = paths[index];
-    const path = paths[index].path;
+    const path = paths[index];
 
     return (
       <tr className="table-active ">
@@ -172,7 +168,7 @@ export default function Home() {
             // const path = pictures[`${plant.pic}`];
             const index = plant.pic - 1;
 
-            const path = paths[index].path;
+            const path = paths[index];
 
             return (
               <div key={plant.id} className="center ">
