@@ -26,6 +26,10 @@ export default function Home() {
 
         paths_temp.push(response.default);
         setPictures(paths_temp);
+
+        console.log(response.default);
+        console.log(paths_temp.length);
+        console.log(paths_temp[pic - 1]);
       } catch (err) {
         console.log(err);
       }
@@ -34,9 +38,11 @@ export default function Home() {
     picNums.forEach((pic) => fetchImage(pic, paths_temp));
   }, []);
 
-  // pictures.forEach((pic) => console.log("paths " + pic));
+  pictures.forEach((pic) => console.log("paths " + pic));
 
   dispatch(setPaths(pictures));
+
+  console.log("paths length " + paths?.length);
 
   function GetPName({ name, id }) {
     switch (name) {
