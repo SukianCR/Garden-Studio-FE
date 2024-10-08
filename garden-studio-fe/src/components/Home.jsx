@@ -20,7 +20,8 @@ export default function Home() {
     const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const paths_temp = [];
     const paths_temp2 = [...paths_temp];
-    const fetchImage = async (pic, paths_temp) => {
+
+    const fetchImage = async (pic) => {
       try {
         const response = await import(`../../images/${pic}.png`);
 
@@ -35,7 +36,7 @@ export default function Home() {
       }
     };
 
-    picNums.forEach((pic) => fetchImage(pic, paths_temp));
+    picNums.forEach((pic) => fetchImage(pic));
   }, []);
 
   pictures.forEach((pic) => console.log("paths " + pic));
