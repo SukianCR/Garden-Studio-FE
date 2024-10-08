@@ -17,19 +17,19 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const paths_temp = [];
     const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
+    const paths_temp = [];
+    const paths_temp2 = [...paths_temp];
     const fetchImage = async (pic, paths_temp) => {
       try {
         const response = await import(`../../images/${pic}.png`);
 
-        paths_temp.push(response.default);
-        setPictures(paths_temp);
+        paths_temp2.push(response.default);
+        setPictures(paths_temp2);
 
         console.log(response.default);
-        console.log(paths_temp.length);
-        console.log(paths_temp[pic - 1]);
+        console.log(paths_temp2.length);
+        console.log(paths_temp2[pic - 1]);
       } catch (err) {
         console.log(err);
       }
