@@ -13,22 +13,25 @@ export default function Home() {
   const grdn = useSelector((state) => state.grdn);
   const paths = grdn.paths;
   const ma = useSelector((state) => state.mainArrays);
-
+  let i = 0;
   const dispatch = useDispatch();
 
   useEffect(() => {
     const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const paths_temp = [];
-    console.log("paths_temp " + paths_temp);
-    console.log("paths_temp above fetch " + Object.isSealed(paths_temp));
 
-    const fetchImage = async (pic, paths_temp) => {
+    // console.log("paths_temp " + paths_temp);
+    // console.log("paths_temp above fetch " + Object.isSealed(paths_temp));
+
+    const fetchImage = async (pic) => {
       try {
         const response = await import(`../../images/${pic}.png`);
-        console.log("paths_temp inside fetch " + Object.isSealed(paths_temp));
+        // console.log("paths_temp inside fetch " + Object.isSealed(paths_temp));
         const newPath = response.default;
-        paths_temp.push(newPath);
+        paths_temp[i] = newPath;
+        // paths_temp.push(newPath);
         setPictures(paths_temp);
+        i = i + 1;
 
         // console.log(response.default);
         // console.log(paths_temp.length);
@@ -38,7 +41,7 @@ export default function Home() {
       }
     };
 
-    picNums.forEach((pic) => fetchImage(pic, paths_temp));
+    picNums.forEach((pic) => fetchImage(pic));
   }, []);
 
   // pictures.forEach((pic) => console.log("pic " + pic));
