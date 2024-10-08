@@ -18,7 +18,8 @@ export default function Garden_model() {
   const allContainers = ma?.allContainers;
   const plantsInGarden = ma?.plantsInGarden;
   const referencePlants = ma?.referencePlants;
-  const paths = ma.pixPaths;
+  const grdn = useSelector((state) => state.grdn);
+  const paths = grdn.paths;
   const cv = useSelector((state) => state.currentView);
   const shap = cv.cvShape;
 
@@ -27,8 +28,11 @@ export default function Garden_model() {
   function DraggableMarkup({ plant_id, old_cont }) {
     const plant_obj = referencePlants.filter((plant) => plant.id == plant_id);
 
+    const pathPic = Number(plant_obj[0]?.pic);
+    console.log("path pic " + pathPic);
+
     // const path = pictures[`${plant_obj[0]?.pic}`];
-    const path = paths[Number(`${plant_obj[0]?.pic}`)];
+    const path = paths[pathPic];
 
     const plant_name = plant_obj[0]?.plant_name;
 
@@ -50,7 +54,6 @@ export default function Garden_model() {
   function GetDroppable({ container }) {
     const drop_id = Math.floor(Math.random() * 10000000);
     if (container.vacancy == false) {
-      //in_garden={false}
       return (
         // <Droppable key={container.id} id={container.id}>
         <Droppable key={drop_id} id={drop_id}>
