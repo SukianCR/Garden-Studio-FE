@@ -19,28 +19,30 @@ export default function Home() {
   useEffect(() => {
     const picNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const paths_temp = [];
-    const paths_temp2 = [...paths_temp];
+    console.log("paths_temp " + paths_temp);
+    console.log("paths_temp above fetch " + Object.isSealed(paths_temp));
 
-    const fetchImage = async (pic) => {
+    const fetchImage = async (pic, paths_temp) => {
       try {
         const response = await import(`../../images/${pic}.png`);
+        console.log("paths_temp inside fetch " + Object.isSealed(paths_temp));
+        const newPath = response.default;
+        paths_temp.push(newPath);
+        setPictures(paths_temp);
 
-        paths_temp2.push(response.default);
-        setPictures(paths_temp2);
-
-        console.log(response.default);
-        console.log(paths_temp2.length);
-        console.log(paths_temp2[pic - 1]);
+        // console.log(response.default);
+        // console.log(paths_temp.length);
+        // console.log(paths_temp[pic - 1]);
       } catch (err) {
         console.log(err);
       }
     };
 
-    picNums.forEach((pic) => fetchImage(pic));
+    picNums.forEach((pic) => fetchImage(pic, paths_temp));
   }, []);
 
-  pictures.forEach((pic) => console.log("paths " + pic));
-
+  // pictures.forEach((pic) => console.log("pic " + pic));
+  console.log("pictures length " + pictures?.length);
   dispatch(setPaths(pictures));
 
   console.log("paths length " + paths?.length);
