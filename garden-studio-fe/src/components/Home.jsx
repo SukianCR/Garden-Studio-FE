@@ -6,8 +6,10 @@ import { useEffect, useState } from "react";
 import uno from "../../images/1.png";
 import itResume from "../../images/resume.pdf";
 import { setPaths, setGPlants } from "../components_db/grdnSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   const plantsP = useSelector((state) => state.plantsP);
   const [pictures, setPictures] = useState([]);
 
@@ -102,6 +104,12 @@ export default function Home() {
       </tr>
     );
   }
+  function LinkDin() {
+    navigate("https://www.linkedin.com/in/susana-fernandez-suki/");
+  }
+  function Resume() {
+    navigate(itResume);
+  }
 
   function Load_Plants_Table() {
     return (
@@ -195,23 +203,34 @@ export default function Home() {
           <div className=" w30 p-3">
             <small className="text-secondary text-center ">
               Susana Fernandez . Las Vegas, NV based (open to relocate).{" "}
-              <button type="button" class="btn btn-success btn-sm m-2">
+              <button type="button" class="btn btn-outline-success btn-sm m-2">
                 sukimixcr@gmail.com
               </button>
               Looking for work as Fullstack, FrontEnd or BackEnd Web Developer.
               Interested in UI design, DevOps, AI and machine learning. I'm also
               a mixologyst enthusiast and
-              <a href={itResume} className="stretched-link p-2" target="_blank">
-                this is my IT resume
-              </a>{" "}
+              <button
+                type="button"
+                className="btn btn-outline-success pt1  btn-sm m-2 "
+                onClick={() => Resume()}
+              >
+                this is my IT Resume
+              </button>
               and{" "}
-              <a
+              <button
+                type="button"
+                className="btn btn-outline-success pt1 btn-sm m-2  "
+                onClick={() => LinkDin()}
+              >
+                LinkDin
+              </button>
+              {/* <button
                 href="https://www.linkedin.com/in/susana-fernandez-suki/"
                 target="_blank'"
                 className="stretched-link p-2"
               >
                 LinkDin
-              </a>
+              </button> */}
               Thank you.
             </small>
           </div>
