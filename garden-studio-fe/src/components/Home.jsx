@@ -105,7 +105,8 @@ export default function Home() {
     );
   }
   function LinkDin() {
-    navigate("https://www.linkedin.com/in/susana-fernandez-suki/");
+    // navigate("https://www.linkedin.com/in/susana-fernandez-suki/");
+    window.location.href = "https://www.linkedin.com/in/susana-fernandez-suki/";
   }
   function Resume() {
     navigate(itResume);
