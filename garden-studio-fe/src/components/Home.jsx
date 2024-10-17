@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 
 import uno from "../../images/1.png";
+import itResume from "../../images/resume.pdf";
 import { setPaths, setGPlants } from "../components_db/grdnSlice";
 
 export default function Home() {
@@ -30,8 +31,11 @@ export default function Home() {
         const newPath = response.default;
         paths_temp[i] = newPath;
         // paths_temp.push(newPath);
+        console.log(i + newPath);
         setPictures(paths_temp);
         i = i + 1;
+
+        // try creating a function to update the arrays outside from use useEffect
 
         // console.log(response.default);
         // console.log(paths_temp.length);
@@ -45,10 +49,10 @@ export default function Home() {
   }, []);
 
   // pictures.forEach((pic) => console.log("pic " + pic));
-  console.log("pictures length " + pictures?.length);
+  // console.log("pictures length " + pictures?.length);
   dispatch(setPaths(pictures));
 
-  console.log("paths length " + paths?.length);
+  //console.log("paths length " + paths?.length);
 
   function GetPName({ name, id }) {
     switch (name) {
@@ -163,9 +167,61 @@ export default function Home() {
   }
   return (
     <>
+      <div className="center">
+        <div className=" intro p-3 w80 rounded-1">
+          <div className=" w70 p-3 ">
+            {" "}
+            <small className="text-light font-italic font-weight-light ">
+              Hello . I'm Susana (Suki), a FullStack PERN developer. I just
+              graduated from FullStack Academy Web Development Bootcamp
+              (8/2024). I'm also a legal immigrant in USA from Costa Rica. Based
+              in Las Vegas, NV, but willing to relocate for a good opportunity .
+              This is my demo for front end. If you can't see the 10 plants
+              pictures in this landing page, then just reload the page. That's
+              the last bug I'm working on . Once you all the plants images, you
+              can then register and design your own garden. Drag and drop plants
+              to your garden. Move them around . Change the garden's shape. Save
+              and or buy your garden (and all it's plants). Two lists of plants
+              are being updated in real time, every time a plant gets dropped or
+              moved . The "Original Plants" list, that you can also filter by 4
+              parameters and "Plants in Garden" . This is fully front end, made
+              with react , bootswatch, react-redux, reduxjs, dnd-kit . Enjoy! .
+              As soon as I finish fixing the last small bug I'll go ahead and
+              finish the backend and Authentication with Postgress, Prisma,
+              Express, JsonWebToken, which I also know how to do. Thank You.
+            </small>
+          </div>
+
+          <div className=" w30 p-3">
+            <small className="text-secondary text-center ">
+              Susana Fernandez . Las Vegas, NV based (open to relocate).{" "}
+              <button type="button" class="btn btn-success btn-sm m-2">
+                sukimixcr@gmail.com
+              </button>
+              Looking for work as Fullstack, FrontEnd or BackEnd Web Developer.
+              Interested in UI design, DevOps, AI and machine learning. I'm also
+              a mixologyst enthusiast and
+              <a href={itResume} className="stretched-link p-2" target="_blank">
+                this is my IT resume
+              </a>{" "}
+              and{" "}
+              <a
+                href="https://www.linkedin.com/in/susana-fernandez-suki/"
+                target="_blank'"
+                className="stretched-link p-2"
+              >
+                LinkDin
+              </a>
+              Thank you.
+            </small>
+          </div>
+        </div>
+      </div>
+
       <h3 className="mt-5">Garden Studio</h3>
       <p className="text-warning"> 🌵 Design your own Garden 🌿</p>
-      <img src={uno} />
+      {/* {<img src={uno} /> }   */}
+
       <section className="mt-2 center  ">
         <div className=" mt-4 home-container  pt-2 pb-2 ">
           {ma?.referencePlants?.map((plant) => {
@@ -190,6 +246,7 @@ export default function Home() {
           })}
         </div>
       </section>
+
       <Load_Plants_Table />
     </>
   );

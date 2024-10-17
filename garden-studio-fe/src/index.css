@@ -89,6 +89,7 @@
 
 .pink {
   background-color: pink !important;
+  color: #000000;
 }
 .blue {
   background-color: lightblue !important;
@@ -212,10 +213,19 @@ select {
   padding-left: 2em;
 }
 
+.w90 {
+  width: 90%;
+}
 .w80 {
   width: 80%;
 }
+.w70 {
+  width: 70%;
+}
 
+.w30 {
+  width: 30%;
+}
 .w20 {
   width: 20%;
 }
@@ -232,8 +242,14 @@ select {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 70%;
+  width: 80%;
   justify-content: center;
+}
+.intro {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #00000063;
 }
 
 .left-droppable-cont {
